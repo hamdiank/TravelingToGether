@@ -17,7 +17,9 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	private AvionRepository avionRepository;
 	
 	public static void main(String[] args) {
+
 		SpringApplication.run(TravelingToGetherApplication.class, args);
+
 	}
 	@Override
 	public void run(String... arg0) throws Exception {
