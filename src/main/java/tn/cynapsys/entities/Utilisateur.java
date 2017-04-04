@@ -22,6 +22,7 @@ public class Utilisateur {
 	private String Profession;
 	private String sexe;
 	private String numTelephone;
+	private String login;
 	
 	@ManyToOne
 	@JoinColumn(name="CodeRole")
@@ -31,8 +32,9 @@ public class Utilisateur {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
-			String profession, String sexe, String numTelephone) {
+			String profession, String sexe, String numTelephone, String login, Role role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -42,7 +44,10 @@ public class Utilisateur {
 		Profession = profession;
 		this.sexe = sexe;
 		this.numTelephone = numTelephone;
+		this.login = login;
+		this.role = role;
 	}
+
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
@@ -102,6 +107,14 @@ public class Utilisateur {
 	}
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 	
 	
