@@ -1,4 +1,4 @@
-package tn.cynapsys.services;
+package tn.cynapsys.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +17,7 @@ import tn.cynapsys.entities.Utilisateur;
 import tn.cynapsys.security.exception.UsernameNotFoundException;
 import tn.cynapsys.security.userDto.JwtUserDto;
 import tn.cynapsys.security.util.JwtTokenGenerator;
+import tn.cynapsys.services.UtilisateurService;
 
 @RestController
 @RequestMapping(value = "/login")
@@ -66,6 +67,7 @@ public class LoginController {
 			jwtUserDto.setRole("USER");
 			jwtUserDto.setUsername(utilisateur2.getLogin());
 			String token = JwtTokenGenerator.generateToken(jwtUserDto);
+			System.out.println(token);
 			response.setHeader("Token", token);
 			response.setStatus(response.SC_ACCEPTED);
 			return new ResponseEntity<String>(token, HttpStatus.ACCEPTED);
