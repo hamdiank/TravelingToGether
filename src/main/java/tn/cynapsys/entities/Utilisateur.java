@@ -23,6 +23,7 @@ public class Utilisateur {
 	private String sexe;
 	private String numTelephone;
 	private String login;
+	private boolean etat ;
 	
 	@ManyToOne
 	@JoinColumn(name="CodeRole")
@@ -34,7 +35,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
-			String profession, String sexe, String numTelephone, String login, Role role) {
+			String profession, String sexe, String numTelephone, String login, boolean etat, Role role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -45,8 +46,10 @@ public class Utilisateur {
 		this.sexe = sexe;
 		this.numTelephone = numTelephone;
 		this.login = login;
+		this.etat = etat;
 		this.role = role;
 	}
+
 
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
@@ -115,6 +118,14 @@ public class Utilisateur {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public boolean isEtat() {
+		return etat;
+	}
+
+	public void setEtat(boolean etat) {
+		this.etat = etat;
 	}
 	
 	

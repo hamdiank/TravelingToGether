@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring()
 				// ignoring the "/", "/index.html", "/app/**", "/register",
 				// "/favicon.ico"
-				.antMatchers("/login","/").antMatchers("/transact");
+				.antMatchers("/login","/**").antMatchers("/transact");
 	}
 
 	@Override

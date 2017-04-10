@@ -8,6 +8,7 @@ import tn.cynapsys.entities.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long>{
 @Query("SELECT u FROM Utilisateur u WHERE u.login = ?1")
 	Utilisateur findOneByLogin(String login);
+
 Utilisateur findUtilisateurByIdUtilisateur(Long id);
 Utilisateur findUtilisateurByMotDePasse(String motDePasse);
 

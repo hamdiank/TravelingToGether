@@ -1,5 +1,7 @@
 package tn.cynapsys.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,16 +37,57 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	
 
-	@Override
+	/*@Override
 	public Long addUtilisateur(String username, String password) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public Boolean deleteUtilisateur(Long idUtilisateur) {
 		// TODO Auto-generated method stub
 		return null;
+	}*/
+
+	@Override
+	public Utilisateur registerUtilisateur(String nom, String prenom, String login, String motDePasse) {
+		Utilisateur utilisateur= new Utilisateur();
+		utilisateur.setNom(nom);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setLogin(login);
+		utilisateur.setMotDePasse(motDePasse);
+		
+		return utilisateurRepository.saveAndFlush(utilisateur);
+	}
+
+	@Override
+	public List<Utilisateur> listUtilisateur() {
+		// TODO Auto-generated method stub
+		return utilisateurRepository.findAll();
+	}
+
+	@Override
+	public Utilisateur getUtilisateur(Long id) {
+		// TODO Auto-generated method stub
+		return utilisateurRepository.findOne(id);
+	}
+
+	@Override
+	public Utilisateur saveUtilisateur(Utilisateur u) {
+		// TODO Auto-generated method stub
+		return utilisateurRepository.save(u);
+	}
+
+	@Override
+	public Utilisateur update(Utilisateur u, Long id) {
+		
+		return utilisateurRepository.saveAndFlush(u);
+	}
+
+	@Override
+	public void delete(Long id) {
+		utilisateurRepository.delete(id);
+		
 	}
 
 }
