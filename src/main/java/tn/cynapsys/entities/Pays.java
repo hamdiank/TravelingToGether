@@ -12,26 +12,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
-public class Pays implements Serializable{
+public class Pays implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long idPays;
-	@Column(name="nom")
+	@Column(name = "nom")
 	private String nom;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ElementCollection
+	@CollectionTable(name = "City", joinColumns = { @JoinColumn(name = "idPays") })
 
-	@ElementCollection
-	  @CollectionTable(name = "City", joinColumns = {@JoinColumn(name="idPays")})
 	private List<String> cities = new ArrayList<>();
-	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ElementCollection
-	 @CollectionTable(name = "Aeroport", joinColumns = {@JoinColumn(name="idPays")})
+	@CollectionTable(name = "Aeroport", joinColumns = { @JoinColumn(name = "idPays") })
 	private List<String> aeroports = new ArrayList<>();
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ElementCollection
-	 @CollectionTable(name = "Station", joinColumns = {@JoinColumn(name="idPays")})
+	@CollectionTable(name = "Station", joinColumns = { @JoinColumn(name = "idPays") })
 	private List<String> stations = new ArrayList<>();
-	
+
 	public Pays() {
 		super();
 	}
@@ -84,5 +89,4 @@ public class Pays implements Serializable{
 		this.stations = stations;
 	}
 
-	
 }

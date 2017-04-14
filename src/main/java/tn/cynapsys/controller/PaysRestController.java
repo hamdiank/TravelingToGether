@@ -6,16 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonToken;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.cynapsys.dao.PaysRepository;
 import tn.cynapsys.entities.Pays;
+import tn.cynapsys.services.PaysService;
 
 @RestController
 @RequestMapping(value = "/admin/pays")
@@ -30,6 +33,8 @@ public class PaysRestController {
 
 	@Autowired
 	private PaysRepository paysRepository;
+	@Autowired
+	private PaysService paysService;
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Pays> pays() {
@@ -37,7 +42,7 @@ public class PaysRestController {
 		return paysRepository.findAll();
 	}
 
-	@RequestMapping(value = "/one/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/pays/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pays> paysById(@PathVariable Long id) {
 		Pays pays = paysRepository.findOne(id);
 		if (pays == null) {
@@ -47,7 +52,7 @@ public class PaysRestController {
 		}
 	}
 
-	@RequestMapping(value = "/one", method = RequestMethod.GET)
+	@RequestMapping(value = "/pays", method = RequestMethod.GET)
 	public ResponseEntity<Pays> paysByName(@Param(value = "nom") String nom) {
 		Pays pays = paysRepository.findOneByName(nom);
 		if (pays == null) {
@@ -70,15 +75,54 @@ public class PaysRestController {
 	}
 
 	@RequestMapping(value = "/delPays/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Pays> deleteUser(@PathVariable Long id) {
+	public ResponseEntity<Pays> deletePays(@PathVariable Long id) {
+	
+	
 		Pays pays = paysRepository.findOne(id);
+		
 			if (pays == null) {
 			return new ResponseEntity<Pays>(HttpStatus.NO_CONTENT);
 		
 		} else {
+			
 			paysRepository.delete(pays);
+			
 			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
 		}
+	}
+	@RequestMapping(value = "/updatePays/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Pays> updatePays(@PathVariable Long id,@RequestBody  Pays pays) {
+		
+		Pays p = paysRepository.findOne(id);
+		
+		if (p == null) {
+		return new ResponseEntity<Pays>(HttpStatus.NO_CONTENT);
+	
+	} else {
+		System.out.println(id+" "+pays);
+	System.out.println(pays.getNom());
+		paysService.updatePays(pays);
+		
+			
+		 System.out.println(paysRepository.findOne(id).getNom());
+			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/city/{id}", method = RequestMethod.GET)
+	public List<String> cityByPaysId(@PathVariable Long id) {
+	
+	
+		Pays pays = paysRepository.findOne(id);
+		
+		/*	if (pays == null) {
+			ret
+		
+		} else {
+			*/
+		
+			return pays.getCities();
+		
 	}
 	
 	
@@ -92,7 +136,7 @@ public class PaysRestController {
 				"C:/Users/hamdi/Downloads/Compressed/CountriesToCitiesJSON-master/CountriesToCitiesJSON-master/countriesToCities.json"));
 
 		JsonToken current;
-		List<String> city = new ArrayList<String>();
+		
 		current = jp.nextToken();
 		if (current != JsonToken.START_OBJECT) {
 			System.out.println("Error: root should be object: quiting.");
@@ -108,6 +152,7 @@ public class PaysRestController {
 			if (current == JsonToken.START_ARRAY) {
 				System.out.println("avant le while : "+jp.getCurrentName());
 				// For each of the records in the array
+				List<String> city = new ArrayList<String>();
 				while (jp.nextToken() != JsonToken.END_ARRAY) {
 					// read the record into a tree model,
 					// this moves the parsing position to the end of it
