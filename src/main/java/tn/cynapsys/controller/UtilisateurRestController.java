@@ -28,7 +28,7 @@ public class UtilisateurRestController {
 		return utilisateurService.listUtilisateur();
 	}
 
-	@RequestMapping(value = "/utilisateurs/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/utilisateur/{id}", method = RequestMethod.GET)
 	public Utilisateur getUtilisateur(@PathVariable("id")Long id) {
 		return utilisateurService.getUtilisateur(id);
 	}
@@ -36,13 +36,13 @@ public class UtilisateurRestController {
 	public Utilisateur save(@RequestBody Utilisateur u) {
 		return utilisateurService.saveUtilisateur(u);
 	}
-	@RequestMapping(value = "/utilisateurs/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value = "/utilisateur/{id}", method=RequestMethod.PUT)
 	public Utilisateur update(@RequestBody Utilisateur u, @PathVariable Long id) {
 		u.setIdUtilisateur(id);
 		return utilisateurService.update(u, id);
 	}
 	
-	@RequestMapping(value = "/utilisateurs/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value = "/utilisateur/{id}", method=RequestMethod.DELETE)
 	public void delete(@RequestBody Utilisateur u, @PathVariable Long id) {
 		utilisateurService.delete(id);
 	}

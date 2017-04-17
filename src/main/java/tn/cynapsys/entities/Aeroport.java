@@ -1,9 +1,7 @@
 package tn.cynapsys.entities;
 
 public class Aeroport {
-	
-	
-	
+
 	private String name;
 
 	public String getName() {
@@ -13,8 +11,5 @@ public class Aeroport {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
 
 }

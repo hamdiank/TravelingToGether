@@ -1,11 +1,17 @@
 package tn.cynapsys.entities;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -23,18 +29,23 @@ public class Utilisateur {
 	private String sexe;
 	private String numTelephone;
 	private String login;
+	private boolean etat ;
 	
 	@ManyToOne
 	@JoinColumn(name="CodeRole")
 	private Role  role;
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
+	 @JsonIgnoreProperties(value = "utilisateur")
+	private Collection<Annonce> annonces  ;
+
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
-			String profession, String sexe, String numTelephone, String login, Role role) {
+			String profession, String sexe, String numTelephone, String login, boolean etat, Role role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -45,68 +56,80 @@ public class Utilisateur {
 		this.sexe = sexe;
 		this.numTelephone = numTelephone;
 		this.login = login;
+		this.etat = etat;
 		this.role = role;
 	}
 
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
+
 	public void setIdUtilisateur(Long idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public String getPrenom() {
 		return prenom;
 	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getMotDePasse() {
 		return motDePasse;
 	}
+
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+
 	public String getDateNaissance() {
 		return dateNaissance;
 	}
+
 	public void setDateNaissance(String dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
+
 	public String getProfession() {
 		return Profession;
 	}
+
 	public void setProfession(String profession) {
 		Profession = profession;
 	}
+
 	public String getSexe() {
 		return sexe;
 	}
+
 	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
+
 	public String getNumTelephone() {
 		return numTelephone;
 	}
+
 	public void setNumTelephone(String numTelephone) {
 		this.numTelephone = numTelephone;
-	}
-	public Role getRole() {
-		return role;
-	}
-	public void setRole(Role role) {
-		this.role = role;
 	}
 
 	public String getLogin() {
@@ -116,6 +139,31 @@ public class Utilisateur {
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
+	public boolean isEtat() {
+		return etat;
+	}
+
+	public void setEtat(boolean etat) {
+		this.etat = etat;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Collection<Annonce> getAnnonces() {
+		return annonces;
+	}
+
+	public void setAnnonces(Collection<Annonce> annonces) {
+		this.annonces = annonces;
+	}
 	
+
 	
 }

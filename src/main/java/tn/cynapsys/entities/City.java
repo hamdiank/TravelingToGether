@@ -1,8 +1,11 @@
 package tn.cynapsys.entities;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class City {
 
-	
+	private String name;
 	
 	public String getName() {
 		return name;
@@ -12,6 +15,6 @@ public class City {
 		this.name = name;
 	}
 
-	private String name;
+	
 	
 }
