@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.cynapsys.dao.PaysRepository;
@@ -62,10 +59,10 @@ public class PaysRestController {
 		}
 	}
 
-	@RequestMapping(value = "/addPays", method = RequestMethod.POST)
-	public ResponseEntity<Pays> createPays(@Param(value = "nom") String nom,
-			@RequestParam("cities") List<String> cities,@RequestParam("aeroport") List<String> aeroport,@RequestParam("station") List<String> station) {
-		Pays pays = new Pays(nom, cities,aeroport,station);
+	@RequestMapping(value = "/addPays/{nom}", method = RequestMethod.POST)
+	public ResponseEntity<Pays> createPays(@PathVariable String nom) {
+		System.out.println("nommmm :"+nom);
+		Pays pays = new Pays(nom, null,null,null);
 		if (paysRepository.findOneByName(pays.getNom()) != null) {
 			throw new RuntimeException("pays already exist");
 		}
