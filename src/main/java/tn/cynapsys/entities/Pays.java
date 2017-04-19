@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -18,15 +21,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 public class Pays implements Serializable {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idPays;
 	@Column(name = "nom")
 	private String nom;
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ElementCollection
-	@CollectionTable(name = "City", joinColumns = { @JoinColumn(name = "idPays") })
 
-	private List<String> cities = new ArrayList<>();
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idPays") 
+	private List<City> cities = new ArrayList<>();
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ElementCollection
 	@CollectionTable(name = "Aeroport", joinColumns = { @JoinColumn(name = "idPays") })
@@ -41,7 +43,7 @@ public class Pays implements Serializable {
 		super();
 	}
 
-	public Pays(String nom, List<String> cities, List<String> aeroports, List<String> stations) {
+	public Pays(String nom, List<City> cities, List<String> aeroports, List<String> stations) {
 		super();
 		this.nom = nom;
 		this.cities = cities;
@@ -65,11 +67,11 @@ public class Pays implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<String> getCities() {
+	public List<City> getCities() {
 		return cities;
 	}
 
-	public void setCities(List<String> cities) {
+	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
 
@@ -88,5 +90,7 @@ public class Pays implements Serializable {
 	public void setStations(List<String> stations) {
 		this.stations = stations;
 	}
+
+	
 
 }

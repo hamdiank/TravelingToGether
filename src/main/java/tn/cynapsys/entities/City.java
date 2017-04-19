@@ -1,20 +1,45 @@
 package tn.cynapsys.entities;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class City {
 
-	private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idCity;
+
+	private String nom;
 	
-	public String getName() {
-		return name;
+	public City() {
+		super();
+	}
+	
+
+	public City(String nom) {
+		super();
+		this.nom = nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getNom() {
+		return nom;
 	}
 
-	
-	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public Long getIdCity() {
+		return idCity;
+	}
+
+
+	public void setIdCity(Long idCity) {
+		this.idCity = idCity;
+	}
+
 }

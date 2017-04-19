@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.cynapsys.dao.PaysRepository;
+import tn.cynapsys.entities.City;
 import tn.cynapsys.entities.Pays;
 import tn.cynapsys.services.PaysService;
 
@@ -107,22 +108,22 @@ public class PaysRestController {
 	}
 	
 	@RequestMapping(value = "/city/{id}", method = RequestMethod.GET)
-	public List<String> cityByPaysId(@PathVariable Long id) {
+	public List<City> cityByPaysId(@PathVariable Long id) {
 	
 	
 		Pays pays = paysRepository.findOne(id);
 		
-		/*	if (pays == null) {
-			ret
+		//	if (pays == null) {
+		//	ret
 		
-		} else {
-			*/
+		//} else {
+			//
 		
 			return pays.getCities();
 		
 	}
 	
-	
+
 	//  Pour charger le table pays et city
 	@RequestMapping(value = "/initial", method = RequestMethod.POST)
 	public List<Pays> initialize() throws JsonParseException, IOException {
@@ -149,16 +150,16 @@ public class PaysRestController {
 			if (current == JsonToken.START_ARRAY) {
 				System.out.println("avant le while : "+jp.getCurrentName());
 				// For each of the records in the array
-				List<String> city = new ArrayList<String>();
+				List<City> city = new ArrayList<City>();
 				while (jp.nextToken() != JsonToken.END_ARRAY) {
 					// read the record into a tree model,
 					// this moves the parsing position to the end of it
 					System.out.println("  : " + jp.getText());
-					city.add(jp.getText());
+					city.add(new City(jp.getText()));
 				}
 				System.out.println("after the while");
 				p.setNom(fieldName);
-				p.setCities(city);
+			    p.setCities(city);
 				paysRepository.save(p);
 			} else {
 				System.out.println("Error: records should be an array: skipping.");
