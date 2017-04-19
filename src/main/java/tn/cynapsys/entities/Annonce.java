@@ -17,13 +17,12 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Embeddable
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE )
-@DiscriminatorColumn(name="TYPE_ANNONCE",discriminatorType=DiscriminatorType.STRING , length=10)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS )
 public class Annonce implements Serializable{
 	@Id @GeneratedValue
 	private Long id; 
-	private String datePublication;
-	private String dateDepart;
+	private Date datePublication;
+	private Date dateDepart;
 	private String adresseDepart;
 	private String adresseArrivee;
 	@ManyToOne
@@ -34,7 +33,7 @@ public class Annonce implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Annonce(String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
+	public Annonce(Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur) {
 		super();
 		this.datePublication = datePublication;
@@ -43,7 +42,7 @@ public class Annonce implements Serializable{
 		this.adresseArrivee = adresseArrivee;
 		this.utilisateur = utilisateur;
 	}
-	public Annonce(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
+	public Annonce(Long id, Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur) {
 		super();
 		this.id = id;
@@ -59,16 +58,16 @@ public class Annonce implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDatePublication() {
+	public Date getDatePublication() {
 		return datePublication;
 	}
-	public void setDatePublication(String datePublication) {
+	public void setDatePublication(Date datePublication) {
 		this.datePublication = datePublication;
 	}
-	public String getDateDepart() {
+	public Date getDateDepart() {
 		return dateDepart;
 	}
-	public void setDateDepart(String dateDepart) {
+	public void setDateDepart(Date dateDepart) {
 		this.dateDepart = dateDepart;
 	}
 	public String getAdresseDepart() {

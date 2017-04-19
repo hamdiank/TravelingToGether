@@ -1,5 +1,6 @@
 package tn.cynapsys.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.cynapsys.dao.AnnonceCovoiRepository;
 import tn.cynapsys.dao.AnnonceRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.Annonce;
@@ -25,14 +27,12 @@ public class AnnonceServiceImpl implements AnnonceService{
 	@Autowired
 	public UtilisateurRepository utilisateurRepository;
 	
+	@Autowired
+	public AnnonceCovoiRepository annonceCovoiRepository;
+	
 	@PersistenceContext
 	private EntityManager em;
 
-	@Override
-	public List<Annonce> listAnnonceCovoi(String typeAnnonce) {
-		
-		return null;
-	}
 
 	@Override
 	public List<Annonce> listAnnonceVol(String typeAnnonce) {
@@ -85,13 +85,13 @@ public class AnnonceServiceImpl implements AnnonceService{
 
 	@Override
 	public List<Annonce> getAnnonces(Long id) {
-		Query req= em.createQuery("select a from Annonce a where a.utilisateur.id= :x ");
+		Query req= em.createQuery("select a from AnnonceCovoi a where a.utilisateur.id= :x ");
 		req.setParameter("x", id);
 		return req.getResultList();
 	}
 
 	@Override
-	public Annonce addAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
+	public Annonce addAnnonceCovoi(Date datePublication, Date dateDepart, String adresseDepart,
 			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id) {
 		AnnonceCovoi annonceCovoi= new AnnonceCovoi();
 		annonceCovoi.setAdresseDepart(adresseDepart);
@@ -108,6 +108,12 @@ public class AnnonceServiceImpl implements AnnonceService{
 		return annonceRepository.save(annonceCovoi);
 		
 
+	}
+
+	@Override
+	public List<AnnonceCovoi> listAnnonceCovoi() {
+		
+		return annonceCovoiRepository.findAll();
 	}
 	
 

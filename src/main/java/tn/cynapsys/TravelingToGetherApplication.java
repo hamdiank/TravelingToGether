@@ -54,7 +54,9 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 		avionRepository.save(new Avion("France Airlines"));	
 		List<Avion> avions= avionRepository.findAll();
 		avions.forEach(a->System.out.println(a.getType()));
+		Long number= utilisateurRepository.count();
 		
+		System.out.println(String.valueOf(number));
 
 		
 		

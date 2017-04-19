@@ -46,4 +46,8 @@ public class UtilisateurRestController {
 	public void delete(@RequestBody Utilisateur u, @PathVariable Long id) {
 		utilisateurService.delete(id);
 	}
+	@RequestMapping(value = "/countOfUsers", method=RequestMethod.GET)
+	public Long getCount() {
+		return utilisateurService.countOfUsers();
+	}
 }
