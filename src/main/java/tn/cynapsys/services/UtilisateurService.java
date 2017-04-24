@@ -29,4 +29,6 @@ public interface UtilisateurService {
 	public Utilisateur update( Utilisateur u , Long id);
 	
 	public void delete( Long id );
+	
+	public Long countOfUsers();
 }

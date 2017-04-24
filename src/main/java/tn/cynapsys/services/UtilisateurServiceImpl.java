@@ -90,4 +90,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		
 	}
 
+	@Override
+	public Long countOfUsers() {
+		
+		return utilisateurRepository.count();
+	}
+
 }

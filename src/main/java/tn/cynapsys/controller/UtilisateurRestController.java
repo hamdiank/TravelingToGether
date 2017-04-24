@@ -32,7 +32,7 @@ public class UtilisateurRestController {
 	public Utilisateur getUtilisateur(@PathVariable("id")Long id) {
 		return utilisateurService.getUtilisateur(id);
 	}
-	@RequestMapping(value = "/utilisateur", method=RequestMethod.POST)
+	@RequestMapping(value = "/utilisateurs", method=RequestMethod.POST)
 	public Utilisateur save(@RequestBody Utilisateur u) {
 		return utilisateurService.saveUtilisateur(u);
 	}
@@ -45,5 +45,9 @@ public class UtilisateurRestController {
 	@RequestMapping(value = "/utilisateur/{id}", method=RequestMethod.DELETE)
 	public void delete(@RequestBody Utilisateur u, @PathVariable Long id) {
 		utilisateurService.delete(id);
+	}
+	@RequestMapping(value = "/countOfUsers", method=RequestMethod.GET)
+	public Long getCount() {
+		return utilisateurService.countOfUsers();
 	}
 }
