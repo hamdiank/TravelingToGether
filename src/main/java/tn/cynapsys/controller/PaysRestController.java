@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.cynapsys.dao.PaysRepository;
+import tn.cynapsys.entities.Aeroport;
 import tn.cynapsys.entities.City;
 import tn.cynapsys.entities.Pays;
+import tn.cynapsys.entities.Station;
 import tn.cynapsys.services.PaysService;
 
 @RestController
@@ -49,6 +51,20 @@ public class PaysRestController {
 			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
 		}
 	}
+	
+	@RequestMapping(value = "/paysByCity/{nom}", method = RequestMethod.GET)
+	public ResponseEntity<Pays> paysByCity(@PathVariable String nom) {
+		System.out.println(nom);
+		Pays pays = paysService.GetByCities(nom);
+		if (pays == null) {
+			System.out.println("enter1");
+			return new ResponseEntity<Pays>(HttpStatus.NO_CONTENT);
+		} else {
+			System.out.println("enter2");
+			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
+		}
+	}
+	
 
 	@RequestMapping(value = "/pays", method = RequestMethod.GET)
 	public ResponseEntity<Pays> paysByName(@Param(value = "nom") String nom) {
@@ -71,6 +87,19 @@ public class PaysRestController {
 		return new ResponseEntity<Pays>(paysRepository.save(pays), HttpStatus.CREATED);
 
 	}
+	@RequestMapping(value = "/renomerPays/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Pays> renomerPays(@PathVariable Long id,@RequestBody Pays pays) {
+		Pays p= paysRepository.findOne(id);
+		if (p == null) {
+			return new ResponseEntity<Pays>(HttpStatus.NO_CONTENT);
+		} else {
+			System.out.println(pays.getNom());
+			System.out.println(pays.getIdPays());
+			System.out.println(id);
+			paysService.updatePays(pays);
+			System.out.println(paysRepository.findOne(id).getNom());
+			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
+		}	}
 
 	@RequestMapping(value = "/delPays/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Pays> deletePays(@PathVariable Long id) {
@@ -88,8 +117,8 @@ public class PaysRestController {
 			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
 		}
 	}
-	@RequestMapping(value = "/updatePays/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Pays> updatePays(@PathVariable Long id,@RequestBody  Pays pays) {
+	@RequestMapping(value = "/updatePays/{id}/{v}/{a}/{s}", method = RequestMethod.PUT)
+	public ResponseEntity<Pays> updatePays(@PathVariable Long id,@PathVariable String v,@PathVariable String a,@PathVariable String s) {
 		
 		Pays p = paysRepository.findOne(id);
 		
@@ -97,13 +126,23 @@ public class PaysRestController {
 		return new ResponseEntity<Pays>(HttpStatus.NO_CONTENT);
 	
 	} else {
-		System.out.println(id+" "+pays);
-	System.out.println(pays.getNom());
-		paysService.updatePays(pays);
+		if(v!=null||!v.equals("undefined"))
+		p.getCities().add(new City(v));
+		if(a!=null||!a.equals("undefined"))
+		p.getAeroports().add(new Aeroport(a));
+		if(s!=null||!s.equals("undefined"))
+		p.getStations().add(new Station(s));
 		
+		System.out.println(a+" "+v+" "+s);
+		//pays.getCities().forEach(v->System.out.println("idddd: "+v.getIdCity()));
+	/*	System.out.println(id+" "+pays);
+	System.out.println(pays.getNom());
+	*/
+		paysService.updatePays(p);
+	
 			
-		 System.out.println(paysRepository.findOne(id).getNom());
-			return new ResponseEntity<Pays>(pays, HttpStatus.OK);
+		// System.out.println(paysRepository.findOne(id).getNom());
+			return new ResponseEntity<Pays>( HttpStatus.OK);
 		}
 	}
 	

@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Pays implements Serializable {
@@ -26,30 +24,33 @@ public class Pays implements Serializable {
 	@Column(name = "nom")
 	private String nom;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "idPays") 
 	private List<City> cities = new ArrayList<>();
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ElementCollection
-	@CollectionTable(name = "Aeroport", joinColumns = { @JoinColumn(name = "idPays") })
-	private List<String> aeroports = new ArrayList<>();
 	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@ElementCollection
-	@CollectionTable(name = "Station", joinColumns = { @JoinColumn(name = "idPays") })
-	private List<String> stations = new ArrayList<>();
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPays")
+	private List<Aeroport> aeroports = new ArrayList<>();
+	
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPays") 
+	private List<Station> stations = new ArrayList<>();
 
 	public Pays() {
 		super();
 	}
 
-	public Pays(String nom, List<City> cities, List<String> aeroports, List<String> stations) {
+	
+
+	public Pays(String nom, List<City> cities, List<Aeroport> aeroports, List<Station> stations) {
 		super();
 		this.nom = nom;
 		this.cities = cities;
 		this.aeroports = aeroports;
 		this.stations = stations;
 	}
+
+
 
 	public Long getIdPays() {
 		return idPays;
@@ -75,21 +76,31 @@ public class Pays implements Serializable {
 		this.cities = cities;
 	}
 
-	public List<String> getAeroports() {
+
+
+	public List<Aeroport> getAeroports() {
 		return aeroports;
 	}
 
-	public void setAeroports(List<String> aeroports) {
+
+
+	public void setAeroports(List<Aeroport> aeroports) {
 		this.aeroports = aeroports;
 	}
 
-	public List<String> getStations() {
+
+
+	public List<Station> getStations() {
 		return stations;
 	}
 
-	public void setStations(List<String> stations) {
+
+
+	public void setStations(List<Station> stations) {
 		this.stations = stations;
 	}
+
+	
 
 	
 
