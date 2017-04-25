@@ -16,7 +16,7 @@ public class AnnonceCovoi extends Annonce{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AnnonceCovoi(Long id, Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
+	public AnnonceCovoi(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur, Long nombrePlaces, Long cotisation) {
 		super(id, datePublication, dateDepart, adresseDepart, adresseArrivee, utilisateur);
 		this.nombrePlaces = nombrePlaces;

@@ -22,10 +22,12 @@ public interface AnnonceService {
 	
 	public void delete(Long id );
 	
-	public Annonce addAnnonceCovoi(Date datePublication, Date dateDepart, String adresseDepart,
+	public Annonce addAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
 			String adresseArrivee,Long nombrePlaces, Long cotisation, Long id);
 	public List<Annonce> getAnnonces(Long id);
 	
 	public List<AnnonceCovoi> listAnnonceCovoi();
+	
+	public List<AnnonceCovoi> maListAnnonceCovoi( Long id);
 
 }
