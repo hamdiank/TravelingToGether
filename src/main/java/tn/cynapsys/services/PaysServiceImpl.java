@@ -7,9 +7,10 @@ import tn.cynapsys.dao.PaysRepository;
 import tn.cynapsys.entities.Pays;
 
 @Service
-public class PaysServiceImpl  implements PaysService{
+public class PaysServiceImpl implements PaysService {
 	@Autowired
 	public PaysRepository paysRepository;
+
 	@Override
 	public Pays getPaysById(Long id) {
 		return paysRepository.findOne(id);
@@ -17,9 +18,15 @@ public class PaysServiceImpl  implements PaysService{
 
 	@Override
 	public Pays updatePays(Pays p) {
-	
-		paysRepository.saveAndFlush(p);
-		return p;
+
+	return	paysRepository.saveAndFlush(p);
+		//return p;
+	}
+
+	@Override
+	public Pays GetByCities(String city) {
+
+		return paysRepository.findOneByCities(city);
 	}
 
 }
