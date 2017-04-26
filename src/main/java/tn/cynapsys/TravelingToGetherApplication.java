@@ -50,6 +50,7 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... arg0) throws Exception {
+		/*
 		List<City>c=new ArrayList<City>();
 		List<Aeroport>ae=new ArrayList<Aeroport>();
 		List<Station>s=new ArrayList<Station>();
@@ -77,7 +78,7 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 		System.out.println(String.valueOf(number));
 
 		
-		
+		*/
 		
 		
 	}

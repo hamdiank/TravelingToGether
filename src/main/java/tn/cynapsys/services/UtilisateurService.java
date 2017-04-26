@@ -3,6 +3,7 @@ package tn.cynapsys.services;
 
 import java.util.List;
 
+import tn.cynapsys.entities.Role;
 import tn.cynapsys.entities.Utilisateur;
 
 public interface UtilisateurService {
@@ -29,6 +30,6 @@ public interface UtilisateurService {
 	public Utilisateur update( Utilisateur u , Long id);
 	
 	public void delete( Long id );
-	
+	public Role getUserRole(Long id);
 	public Long countOfUsers();
 }

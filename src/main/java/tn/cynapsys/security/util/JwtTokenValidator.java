@@ -34,6 +34,7 @@ public class JwtTokenValidator {
 			Long iduser = new Long(body.get("userId").toString());
 			user.setId(iduser);
 			user.setRole(body.get("role").toString());
+			
 			return user ; 
 		} catch (Exception e) {
 		return null ; 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.cynapsys.entities.Role;
 import tn.cynapsys.entities.Utilisateur;
 import tn.cynapsys.security.exception.UsernameNotFoundException;
 import tn.cynapsys.security.userDto.JwtUserDto;
@@ -32,34 +33,34 @@ public class LoginController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> login(@RequestBody Utilisateur utilisateur,HttpServletResponse response) {
 		BCryptPasswordEncoder passencrypt = new BCryptPasswordEncoder();
-		System.out.println(utilisateur.getLogin());
-		System.out.println(utilisateur.getMotDePasse());
+		//System.out.println(utilisateur.getLogin());
+		//System.out.println(utilisateur.getMotDePasse());
 
 		Utilisateur utilisateur2 = utilisateurService.getUtilisateurByLogin(utilisateur.getLogin());
 		// Utilisateur utilisateur2 =
 		// utilisateurService.getUtilisateurByLogin(login);
-		System.out.println(utilisateur2.getLogin() + "   tey " + utilisateur2.getMotDePasse());
+		//System.out.println(utilisateur2.getLogin() + "   tey " + utilisateur2.getMotDePasse());
 
 		if (utilisateur2 != null) {
 
 			System.out.println("enter 1");
 
 			String password = utilisateur2.getMotDePasse();
-			System.out.println(password);
-			System.out.println(utilisateur.getMotDePasse());
+			//System.out.println(password);
+			//System.out.println(utilisateur.getMotDePasse());
 			// if (!passencrypt.matches(/*utilisateur.getMotDePasse()*/pass,
 			// password)) {
 			if (!password.equals(utilisateur.getMotDePasse())) {
-				System.out.println("enter 2");
+				//System.out.println("enter 2");
 				// if(!pass.equals(password)) {
 				response.setStatus(response.SC_UNAUTHORIZED);
 				throw new UsernameNotFoundException("Wrong Passowrd");
 
 			}
 			Long iduser = utilisateur2.getIdUtilisateur();
-			// TODO
-			// add the role
-			// Role role = roleUtilisateurService.getRoleUser(iduser);
+			
+			//in prod
+			//Role role = utilisateurService.getUserRole(iduser);
 
 			JwtUserDto jwtUserDto = new JwtUserDto();
 			jwtUserDto.setId(iduser);
