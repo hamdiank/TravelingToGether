@@ -16,7 +16,7 @@ public class AnnonceTrain extends Annonce{
 		// TODO Auto-generated constructor stub
 	}
 
-	public AnnonceTrain(Long id, Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
+	public AnnonceTrain(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur, String typeTrain) {
 		super(id, datePublication, dateDepart, adresseDepart, adresseArrivee, utilisateur);
 		this.typeTrain = typeTrain;

@@ -16,7 +16,7 @@ public class AnnonceVol extends Annonce{
 		// TODO Auto-generated constructor stub
 	}
 
-	public AnnonceVol(Long id, Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
+	public AnnonceVol(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur, String typeAvion) {
 		super(id, datePublication, dateDepart, adresseDepart, adresseArrivee, utilisateur);
 		this.typeAvion = typeAvion;

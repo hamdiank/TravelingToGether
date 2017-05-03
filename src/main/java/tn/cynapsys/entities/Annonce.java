@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Annonce implements Serializable{
 	@Id @GeneratedValue
 	private Long id; 
-	private Date datePublication;
-	private Date dateDepart;
+	private String datePublication;
+	private String dateDepart;
 	private String adresseDepart;
 	private String adresseArrivee;
 	@ManyToOne
@@ -33,7 +33,7 @@ public class Annonce implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Annonce(Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
+	public Annonce(String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur) {
 		super();
 		this.datePublication = datePublication;
@@ -42,7 +42,7 @@ public class Annonce implements Serializable{
 		this.adresseArrivee = adresseArrivee;
 		this.utilisateur = utilisateur;
 	}
-	public Annonce(Long id, Date datePublication, Date dateDepart, String adresseDepart, String adresseArrivee,
+	public Annonce(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
 			Utilisateur utilisateur) {
 		super();
 		this.id = id;
@@ -58,16 +58,16 @@ public class Annonce implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getDatePublication() {
+	public String getDatePublication() {
 		return datePublication;
 	}
-	public void setDatePublication(Date datePublication) {
+	public void setDatePublication(String datePublication) {
 		this.datePublication = datePublication;
 	}
-	public Date getDateDepart() {
+	public String getDateDepart() {
 		return dateDepart;
 	}
-	public void setDateDepart(Date dateDepart) {
+	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
 	public String getAdresseDepart() {

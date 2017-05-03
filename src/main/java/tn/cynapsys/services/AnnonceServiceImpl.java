@@ -1,5 +1,6 @@
 package tn.cynapsys.services;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class AnnonceServiceImpl implements AnnonceService{
 	}
 
 	@Override
-	public Annonce addAnnonceCovoi(Date datePublication, Date dateDepart, String adresseDepart,
+	public Annonce addAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
 			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id) {
 		AnnonceCovoi annonceCovoi= new AnnonceCovoi();
 		annonceCovoi.setAdresseDepart(adresseDepart);
@@ -114,6 +115,13 @@ public class AnnonceServiceImpl implements AnnonceService{
 	public List<AnnonceCovoi> listAnnonceCovoi() {
 		
 		return annonceCovoiRepository.findAll();
+	}
+
+	@Override
+	public List<AnnonceCovoi> maListAnnonceCovoi(Long id) {
+		Query req= em.createQuery("select a from AnnonceCovoi a where a.utilisateur.id= :x ");
+		req.setParameter("x", id);
+		return req.getResultList();
 	}
 	
 

@@ -35,11 +35,15 @@ public class AnnonceRestController {
 	public Annonce save(@RequestBody Annonce a) {
 		return annonceService.saveAnnonce(a);
 	}
-	@RequestMapping(value = "/ajoutAnnonce", method=RequestMethod.POST)
-	public Annonce ajout(@RequestParam Date datePublication,@RequestParam Date dateDepart,
+	@RequestMapping(value = "/ajoutAnnonceCovoi", method=RequestMethod.PUT)
+	public Annonce ajout(@RequestParam String datePublication,@RequestParam String dateDepart,
 			@RequestParam String adresseDepart,@RequestParam String adresseArrivee,
 			@RequestParam Long nombrePlaces, @RequestParam Long cotisation,@RequestParam Long id ) {
 		return annonceService.addAnnonceCovoi(datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id);
+	}
+	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.PUT)
+	public  List <AnnonceCovoi> getMaListeAnnonceCovoi(@RequestParam Long id) {
+		return annonceService.maListAnnonceCovoi(id);
 	}
 
 }
