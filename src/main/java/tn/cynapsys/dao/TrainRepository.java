@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import tn.cynapsys.entities.Train;
-import tn.cynapsys.entities.Voiture;
 
 public interface TrainRepository  extends JpaRepository <Train, Long >{
 	@Query("select t from Train t where t.type like :x ")

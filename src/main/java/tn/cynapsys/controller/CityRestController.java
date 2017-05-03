@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.cynapsys.dao.CityRepository;
 import tn.cynapsys.entities.City;
-import tn.cynapsys.entities.Pays;
 import tn.cynapsys.services.CityService;
 
 

@@ -1,7 +1,7 @@
 package tn.cynapsys;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,15 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tn.cynapsys.dao.AnnonceRepository;
 import tn.cynapsys.dao.AvionRepository;
+import tn.cynapsys.dao.MessageRepository;
 import tn.cynapsys.dao.PaysRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.dao.VoitureRepository;
-import tn.cynapsys.entities.Aeroport;
-import tn.cynapsys.entities.Avion;
-import tn.cynapsys.entities.City;
-import tn.cynapsys.entities.Pays;
-import tn.cynapsys.entities.Station;
-import tn.cynapsys.entities.Voiture;
+import tn.cynapsys.entities.Message;
+import tn.cynapsys.entities.Utilisateur;
 
 @SpringBootApplication
 public class TravelingToGetherApplication implements CommandLineRunner {
@@ -37,8 +34,8 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
-	
-
+	@Autowired
+	private MessageRepository messageRepository ;
 	
 	
 	
@@ -50,6 +47,16 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... arg0) throws Exception {
+    /*		
+		LocalDateTime c=LocalDateTime.now();
+		System.out.println(c);
+		LocalDateTime a=LocalDateTime.now();
+	*/	
+		Utilisateur u= utilisateurRepository.findOne(Long.valueOf(1+""));
+		Message message =new Message(Long.valueOf(2+""),u,"first message");
+		
+		messageRepository.save(message);
+		
 		/*
 		List<City>c=new ArrayList<City>();
 		List<Aeroport>ae=new ArrayList<Aeroport>();

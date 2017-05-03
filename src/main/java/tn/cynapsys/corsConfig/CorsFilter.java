@@ -15,7 +15,7 @@ public class CorsFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
+		// TODO 
 
 	}
 
@@ -25,11 +25,15 @@ public class CorsFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		String origin = req.getHeader("Origin");
+		
+	
 		res.setHeader("Access-Control-Allow-Origin", "*");
-		res.setHeader("Access-Control-Allow-Methods","GET,POST,DELETE,PUT,HEAD");;
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		res.setHeader("Access-Control-Allow-Methods","GET,POST,DELETE,PUT,HEAD,OPTIONS");
+		res.setHeader("Access-Control-Expose-Headers" ,"Authorization");
 		res.setHeader("Access-Control-Allow-Headers",
-				"Cache-Control,  Pragma , Origin, X-Requested-With, Content-Type, Accept,Authorization");
+				"Origin, X-Requested-With, ,Content-Type, Accept, Access-Control-Allow-Headers, Authorization" );
+	
 		if("OPTIONS".equalsIgnoreCase(req.getMethod())) {
 		    res.setStatus(HttpServletResponse.SC_OK);
 		} else {
@@ -40,8 +44,7 @@ public class CorsFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-
+		// TODO 
 	}
 
 }

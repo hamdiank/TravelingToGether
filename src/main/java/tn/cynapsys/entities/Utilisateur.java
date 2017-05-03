@@ -1,6 +1,7 @@
 package tn.cynapsys.entities;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,6 +35,9 @@ public class Utilisateur {
 	@ManyToOne
 	@JoinColumn(name="CodeRole")
 	private Role  role;
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="expediteur")
+	private List<Message> messages;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
 	 @JsonIgnoreProperties(value = "utilisateur")

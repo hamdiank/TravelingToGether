@@ -30,19 +30,22 @@ public class TrainRestController {
 		return trainService.getTrain(id);
 	}
 
-	@RequestMapping(value = "/trains", method = RequestMethod.POST)
-	public Train save(@RequestBody Train t) {
+	@RequestMapping(value = "/trains/{nom}", method = RequestMethod.POST)
+	public Train save(@PathVariable String nom) {
+		System.out.println(nom);
+		Train t = new Train(nom);
 		return trainService.saveTrain(t);
 	}
 
-	@RequestMapping(value = "/trains/{id}", method = RequestMethod.PUT)
-	public Train update(@RequestBody Train t, @PathVariable Long id) {
-		t.setId(id);
-		return trainService.update(t, id);
+	@RequestMapping(value = "/trains", method = RequestMethod.PUT)
+	public Train update(@RequestBody Train t) {
+		
+		return trainService.update(t);
 	}
 
 	@RequestMapping(value = "/trains/{id}", method = RequestMethod.DELETE)
-	public void delete(@RequestBody Train p, @PathVariable Long id) {
+	public void delete( @PathVariable Long id) {
+	
 		trainService.delete(id);
 	}
 }

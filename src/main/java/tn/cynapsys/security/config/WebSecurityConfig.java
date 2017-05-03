@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring()
 				// ignoring the "/", "/index.html", "/app/**", "/register",
 				// "/favicon.ico"
-				.antMatchers("/login","/**").antMatchers("/transact");
+				.antMatchers("/login","/**");
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable() // disable csrf for our requests.
 				.authorizeRequests().antMatchers(HttpMethod.GET, "/login/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/transact").permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				.anyRequest().authenticated().and()
 				.addFilterBefore(new JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 				// enabling the basic authentication

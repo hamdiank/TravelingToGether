@@ -25,19 +25,19 @@ public class TrainServiceImpl implements TrainService{
 
 	@Override
 	public Train getTrain(Long id) {
-		// TODO Auto-generated method stub
+		
 		return trainRepository.findOne(id);
 	}
 
 	@Override
 	public Train saveTrain(Train t) {
-		// TODO Auto-generated method stub
+		
 		return trainRepository.save(t);
 	}
 
 	@Override
-	public Train update(Train t, Long id) {
-		
+	public Train update(Train t) {
+
 		return trainRepository.saveAndFlush(t);
 	}
 

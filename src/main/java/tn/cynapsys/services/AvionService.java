@@ -13,7 +13,7 @@ public interface AvionService {
 	
 	public Avion saveAvion(Avion a);
 	
-	public Avion update ( Avion a , Long id);
+	public Avion update ( Avion a );
 	
 	public void delete(Long id );
 

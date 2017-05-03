@@ -15,7 +15,7 @@ public List<Train> listTrain();
 	
 	public Train saveTrain(Train t);
 	
-	public Train update ( Train a , Long id);
+	public Train update ( Train a);
 	
 	public void delete(Long id );
 

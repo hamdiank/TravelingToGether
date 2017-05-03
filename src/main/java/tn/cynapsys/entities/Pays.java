@@ -14,33 +14,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 public class Pays implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idPays;
 	@Column(name = "nom")
 	private String nom;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name = "idPays") 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPays")
 	private List<City> cities = new ArrayList<>();
-	
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "idPays")
 	private List<Aeroport> aeroports = new ArrayList<>();
-	
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name = "idPays") 
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPays")
 	private List<Station> stations = new ArrayList<>();
 
 	public Pays() {
 		super();
 	}
-
-	
 
 	public Pays(String nom, List<City> cities, List<Aeroport> aeroports, List<Station> stations) {
 		super();
@@ -49,8 +50,6 @@ public class Pays implements Serializable {
 		this.aeroports = aeroports;
 		this.stations = stations;
 	}
-
-
 
 	public Long getIdPays() {
 		return idPays;
@@ -76,32 +75,20 @@ public class Pays implements Serializable {
 		this.cities = cities;
 	}
 
-
-
 	public List<Aeroport> getAeroports() {
 		return aeroports;
 	}
-
-
 
 	public void setAeroports(List<Aeroport> aeroports) {
 		this.aeroports = aeroports;
 	}
 
-
-
 	public List<Station> getStations() {
 		return stations;
 	}
 
-
-
 	public void setStations(List<Station> stations) {
 		this.stations = stations;
 	}
-
-	
-
-	
 
 }

@@ -33,7 +33,7 @@ public class AvionServiceImpl implements AvionService{
 	}
 
 	@Override
-	public Avion update(Avion a, Long id) {
+	public Avion update(Avion a) {
 		
 		return avionRepository.saveAndFlush(a);
 	}
