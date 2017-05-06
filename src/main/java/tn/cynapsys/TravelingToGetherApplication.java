@@ -50,16 +50,16 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... arg0) throws Exception {
-		List<City>c=new ArrayList<City>();
+		/*List<City>c=new ArrayList<City>();
 		List<Aeroport>ae=new ArrayList<Aeroport>();
 		List<Station>s=new ArrayList<Station>();
 		c.add(new City("ttCity"));
 		ae.add(new Aeroport("ttaero"));
 		s.add(new Station("ttstation"));
 		s.add(new Station("ttstation2"));
-		s.add(new Station("ttstation3"));
+		s.add(new Station("ttstation3"));*/
 		
-		paysRepository.save(new Pays("tt",c,ae,s));
+		/*paysRepository.save(new Pays("tt",c,ae,s));*/
 		voitureRepository.save(new Voiture("BMW", "Serie 5", 5, "Essence"));
 		voitureRepository.save(new Voiture("BMW", "Serie 4", 4, "Diesel"));
 		voitureRepository.save(new Voiture("Peugeot", "207", 5, "Essence"));

@@ -123,6 +123,29 @@ public class AnnonceServiceImpl implements AnnonceService{
 		req.setParameter("x", id);
 		return req.getResultList();
 	}
+
+	@Override
+	public AnnonceCovoi updateAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
+			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id, Long idUtilisateur) {
+		AnnonceCovoi annonceCovoi= annonceCovoiRepository.findOne(id);
+		annonceCovoi.setAdresseDepart(adresseDepart);
+		annonceCovoi.setAdresseArrivee(adresseArrivee);
+		annonceCovoi.setCotisation(cotisation);
+		annonceCovoi.setDateDepart(dateDepart);
+		annonceCovoi.setDatePublication(datePublication);
+		annonceCovoi.setNombrePlaces(nombrePlaces);
+		Utilisateur utilisateur= utilisateurRepository.findOne(idUtilisateur);
+		annonceCovoi.setUtilisateur(utilisateur);
+		return annonceCovoiRepository.saveAndFlush(annonceCovoi);
+	}
+
+	@Override
+	public void deleteAnnonceCovoi(Long id) {
+		annonceCovoiRepository.delete(id);
+		
+	}
+
+
 	
 
 }

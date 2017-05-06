@@ -36,7 +36,7 @@ public class Utilisateur {
 	private Role  role;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
-	 @JsonIgnoreProperties(value = "utilisateur")
+	@JsonIgnoreProperties(value = "utilisateur")
 	private Collection<Annonce> annonces  ;
 
 	public Utilisateur() {
