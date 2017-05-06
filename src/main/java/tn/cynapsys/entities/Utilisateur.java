@@ -41,6 +41,7 @@ public class Utilisateur {
 	private List<Message> messages;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
+
 	 @JsonIgnoreProperties(value = "utilisateur")
 	private Collection<Annonce> annonces ;
 

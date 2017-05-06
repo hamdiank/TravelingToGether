@@ -49,11 +49,11 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
+
 	
 		Utilisateur u = utilisateurRepository.findOne(Long.valueOf(2 + ""));
 		System.out.println(u.getRole().getTypeRole());
 	//	Role role = new Role("USER");
-		
 	//	u.setRole(role);
 		
 	//	Utilisateurservice.update(u);

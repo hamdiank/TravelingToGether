@@ -29,5 +29,10 @@ public interface AnnonceService {
 	public List<AnnonceCovoi> listAnnonceCovoi();
 	
 	public List<AnnonceCovoi> maListAnnonceCovoi( Long id);
-
+	
+	public AnnonceCovoi updateAnnonceCovoi( String datePublication, String dateDepart, String adresseDepart,
+			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id, Long idUtilisateur);
+	
+	public void deleteAnnonceCovoi(Long id);
+	
 }

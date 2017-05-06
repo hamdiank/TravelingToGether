@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,9 +38,25 @@ public class AnnonceRestController {
 			@RequestParam Long nombrePlaces, @RequestParam Long cotisation,@RequestParam Long id ) {
 		return annonceService.addAnnonceCovoi(datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id);
 	}
-	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.PUT)
+	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.GET)
 	public  List <AnnonceCovoi> getMaListeAnnonceCovoi(@RequestParam Long id) {
 		return annonceService.maListAnnonceCovoi(id);
 	}
+	
+	@RequestMapping(value = "/updateAnnonceCovoi", method=RequestMethod.PUT)
+	public AnnonceCovoi update(@RequestParam String datePublication,@RequestParam String dateDepart,
+			@RequestParam String adresseDepart,@RequestParam String adresseArrivee,
+			@RequestParam Long nombrePlaces, @RequestParam Long cotisation,@RequestParam Long id, @RequestParam Long idUtilisateur) {
+		return annonceService.updateAnnonceCovoi(datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id, idUtilisateur);
+	}
+	
+	@RequestMapping(value = "/deleteAnnonceCovoi/{id}", method=RequestMethod.DELETE)
+	public void deleteAnnonceCovoi( @PathVariable Long id) {
+		annonceService.deleteAnnonceCovoi(id);
+	}
+	
+		
+	
+	
 
 }
