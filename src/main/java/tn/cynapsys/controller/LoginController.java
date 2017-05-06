@@ -31,41 +31,44 @@ public class LoginController {
 	// private RoleUtilisateurService roleUtilisateurService;
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<String> login(@RequestBody Utilisateur utilisateur,HttpServletResponse response) {
+	public @ResponseBody ResponseEntity<String> login(@RequestBody Utilisateur utilisateur,
+			HttpServletResponse response) {
 		BCryptPasswordEncoder passencrypt = new BCryptPasswordEncoder();
-		//System.out.println(utilisateur.getLogin());
-		//System.out.println(utilisateur.getMotDePasse());
+		// System.out.println(utilisateur.getLogin());
+		// System.out.println(utilisateur.getMotDePasse());
 
 		Utilisateur utilisateur2 = utilisateurService.getUtilisateurByLogin(utilisateur.getLogin());
 		// Utilisateur utilisateur2 =
 		// utilisateurService.getUtilisateurByLogin(login);
-		//System.out.println(utilisateur2.getLogin() + "   tey " + utilisateur2.getMotDePasse());
+		// System.out.println(utilisateur2.getLogin() + " tey " +
+		// utilisateur2.getMotDePasse());
 
 		if (utilisateur2 != null) {
 
 			System.out.println("enter 1");
 
 			String password = utilisateur2.getMotDePasse();
-			//System.out.println(password);
-			//System.out.println(utilisateur.getMotDePasse());
+			// System.out.println(password);
+			// System.out.println(utilisateur.getMotDePasse());
 			// if (!passencrypt.matches(/*utilisateur.getMotDePasse()*/pass,
 			// password)) {
 			if (!password.equals(utilisateur.getMotDePasse())) {
-				//System.out.println("enter 2");
+				// System.out.println("enter 2");
 				// if(!pass.equals(password)) {
 				response.setStatus(response.SC_UNAUTHORIZED);
 				throw new UsernameNotFoundException("Wrong Passowrd");
 
 			}
 			Long iduser = utilisateur2.getIdUtilisateur();
-			
-			//in prod
-			//Role role = utilisateurService.getUserRole(iduser);
 
+			// in prod
+			Role role = utilisateurService.getUserRole(iduser);
+			System.out.println(role);
+			
 			JwtUserDto jwtUserDto = new JwtUserDto();
 			jwtUserDto.setId(iduser);
 
-			jwtUserDto.setRole("USER");
+			jwtUserDto.setRole(role.getTypeRole());
 			jwtUserDto.setUsername(utilisateur2.getLogin());
 			String token = JwtTokenGenerator.generateToken(jwtUserDto);
 			System.out.println(token);

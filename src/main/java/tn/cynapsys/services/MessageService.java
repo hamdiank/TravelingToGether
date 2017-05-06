@@ -9,7 +9,7 @@ public interface MessageService {
 
 	List<Message> getAll();
 
-	List<Message> getMessageByExpiditeur(Utilisateur u);
+	List<Message> getMessageByAuthor(Utilisateur u);
 
 	List<Message> getMessageByIdDestinataire(Long id);
 

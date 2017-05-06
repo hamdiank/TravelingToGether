@@ -76,7 +76,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public Utilisateur update(Utilisateur u, Long id) {
+	public Utilisateur update(Utilisateur u) {
 
 		return utilisateurRepository.saveAndFlush(u);
 	}
@@ -97,6 +97,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public Role getUserRole(Long id) {
 		
 		return utilisateurRepository.findOne(id).getRole();
+	}
+
+	@Override
+	public Utilisateur getUtilisateurbyEmail(String email) {
+		
+		return utilisateurRepository.findUtilisateurByEmail(email);
 	}
 
 	

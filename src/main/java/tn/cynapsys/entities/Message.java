@@ -1,13 +1,15 @@
 package tn.cynapsys.entities;
 
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,40 +19,49 @@ public class Message {
 	
 	@Id
 	@GeneratedValue
-	private Long idMessage;
+	private Long id;
 	
 	private Long idDestinataire;
 	
 	@ManyToOne
 	@JoinColumn(name="ID_EXPEDITEUR")
-	private Utilisateur expediteur;
+	private Utilisateur author;
 
-	private String content ;
+	private String text ;
 
 	//private Date dateMessage;
-	@JsonFormat(pattern = "dd::MM::yyyy")
-	LocalDateTime dateMessage;
-	private Boolean read;
+	
+
+	private Boolean isRead;
 	
 	public Message() {
 		super();
 	}
+	
+public Message(Long idDestinataire, Utilisateur author, String text) {
+		super();
+		this.idDestinataire = idDestinataire;
+		this.author = author;
+		this.text = text;
+		this.isRead = false;
+	}
 
+/*
 	public Message(Long idDestinataire, Utilisateur expediteur, String content) {
 		super();
 		this.idDestinataire = idDestinataire;
 		this.expediteur = expediteur;
 		this.content = content;
-		this.dateMessage  = LocalDateTime.now();
+		//this.dateMessage  = new Date();
 		this.read=false;
+	}*/
+
+	public Long getId() {
+		return id;
 	}
 
-	public Long getIdMessage() {
-		return idMessage;
-	}
-
-	public void setIdMessage(Long idMessage) {
-		this.idMessage = idMessage;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getIdDestinataire() {
@@ -61,37 +72,31 @@ public class Message {
 		this.idDestinataire = idDestinataire;
 	}
 
-	public Utilisateur getExpediteur() {
-		return expediteur;
+	public Utilisateur getAuthor() {
+		return author;
 	}
 
-	public void setExpediteur(Utilisateur expediteur) {
-		this.expediteur = expediteur;
+	public void setAuthor(Utilisateur author) {
+		this.author = author;
 	}
 
-	public String getContent() {
-		return content;
+	public String getText() {
+		return text;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setText(String text) {
+		this.text = text;
 	}
 
-	public LocalDateTime getDateMessage() {
-		return dateMessage;
+	public Boolean getIsRead() {
+		return isRead;
 	}
 
-	public void setDateMessage(LocalDateTime dateMessage) {
-		this.dateMessage = dateMessage;
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
 	}
 
-	public Boolean getRead() {
-		return read;
-	}
-
-	public void setRead(Boolean read) {
-		this.read = read;
-	}
+	
 
 	
 	

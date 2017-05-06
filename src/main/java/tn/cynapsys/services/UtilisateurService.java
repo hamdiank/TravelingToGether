@@ -12,7 +12,7 @@ public interface UtilisateurService {
 	Utilisateur getUtilisateurByMotDePasse(String motDePasse);
 
 	Utilisateur getUtilisateurbyId(Long idUtilisateur);
-
+	Utilisateur getUtilisateurbyEmail(String email);
 	//Boolean updateUtilisateur(String username,String password, Profile profile);
 
 	//Long addUtilisateur(String username, String password);
@@ -27,7 +27,7 @@ public interface UtilisateurService {
 	
 	public Utilisateur saveUtilisateur(Utilisateur u);
 	
-	public Utilisateur update( Utilisateur u , Long id);
+	public Utilisateur update( Utilisateur u );
 	
 	public void delete( Long id );
 	public Role getUserRole(Long id);

@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.cynapsys.entities.Avion;
 import tn.cynapsys.entities.Utilisateur;
-import tn.cynapsys.services.AvionService;
 import tn.cynapsys.services.UtilisateurService;
 
 @CrossOrigin(origins="*")
@@ -36,10 +34,10 @@ public class UtilisateurRestController {
 	public Utilisateur save(@RequestBody Utilisateur u) {
 		return utilisateurService.saveUtilisateur(u);
 	}
-	@RequestMapping(value = "/utilisateur/{id}", method=RequestMethod.PUT)
-	public Utilisateur update(@RequestBody Utilisateur u, @PathVariable Long id) {
-		u.setIdUtilisateur(id);
-		return utilisateurService.update(u, id);
+	@RequestMapping(value = "/utilisateur", method=RequestMethod.PUT)
+	public Utilisateur update(@RequestBody Utilisateur u) {
+		
+		return utilisateurService.update(u);
 	}
 	
 	@RequestMapping(value = "/utilisateur/{id}", method=RequestMethod.DELETE)

@@ -1,5 +1,7 @@
 package tn.cynapsys.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,12 @@ public class PaysServiceImpl implements PaysService {
 	public Pays GetByCities(String city) {
 
 		return paysRepository.findOneByCities(city);
+	}
+
+	@Override
+	public List<Pays> getAll() {
+	
+		return paysRepository.findAll();
 	}
 
 }

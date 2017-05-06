@@ -22,9 +22,9 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public List<Message> getMessageByExpiditeur(Utilisateur u) {
+	public List<Message> getMessageByAuthor(Utilisateur u) {
 		
-		return messageRepository.findByExpediteur(u);
+		return messageRepository.findByAuthor(u);
 	}
 
 	@Override

@@ -11,17 +11,15 @@ import javax.persistence.OneToMany;
 @Entity
 public class Role {
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue
 	private Long idRole;
 	
 	private String typeRole;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="role")
-	private Collection <Utilisateur> utilisateur;
-	
 	public Role() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 	public Role(String typeRole) {
 		super();
@@ -39,11 +37,5 @@ public class Role {
 	public void setTypeRole(String typeRole) {
 		this.typeRole = typeRole;
 	}
-	public Collection<Utilisateur> getUtilisateur() {
-		return utilisateur;
-	}
-	public void setUtilisateur(Collection<Utilisateur> utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
+	
 }

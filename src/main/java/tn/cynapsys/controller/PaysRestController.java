@@ -39,12 +39,12 @@ public class PaysRestController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Pays> pays() {
 
-		return paysRepository.findAll();
+		return paysService.getAll();
 	}
 
 	@RequestMapping(value = "/pays/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Pays> paysById(@PathVariable Long id) {
-		Pays pays = paysRepository.findOne(id);
+		Pays pays = paysService.getPaysById(id);
 		if (pays == null) {
 			return new ResponseEntity<Pays>(HttpStatus.NO_CONTENT);
 		} else {

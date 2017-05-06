@@ -3,6 +3,7 @@ package tn.cynapsys.entities;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,16 +33,16 @@ public class Utilisateur {
 	private String login;
 	private boolean etat ;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="CodeRole")
 	private Role  role;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="expediteur")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy="author")
 	private List<Message> messages;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
 	 @JsonIgnoreProperties(value = "utilisateur")
-	private Collection<Annonce> annonces  ;
+	private Collection<Annonce> annonces ;
 
 	public Utilisateur() {
 		super();

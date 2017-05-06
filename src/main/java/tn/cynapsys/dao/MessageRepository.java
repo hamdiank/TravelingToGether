@@ -18,6 +18,6 @@ public interface MessageRepository extends JpaRepository<Message, Long>{
 	
 	List<Message> findByIdDestinataire(Long id);
 	
-	List<Message> findByExpediteur(Utilisateur U);
+	List<Message> findByAuthor(Utilisateur U);
 	
 }
