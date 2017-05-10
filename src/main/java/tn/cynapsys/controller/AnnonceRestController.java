@@ -32,6 +32,9 @@ public class AnnonceRestController {
 	public Annonce save(@RequestBody Annonce a) {
 		return annonceService.saveAnnonce(a);
 	}
+	
+	//////////////////////////////////////////////////////
+	
 	@RequestMapping(value = "/ajoutAnnonceCovoi", method=RequestMethod.PUT)
 	public Annonce ajout(@RequestParam String datePublication,@RequestParam String dateDepart,
 			@RequestParam String adresseDepart,@RequestParam String adresseArrivee,
@@ -54,6 +57,11 @@ public class AnnonceRestController {
 	public void deleteAnnonceCovoi( @PathVariable Long id) {
 		annonceService.deleteAnnonceCovoi(id);
 	}
+	@RequestMapping(value = "/getAnnonceCovoiById", method=RequestMethod.GET)
+	public AnnonceCovoi getAnnonceCovoiById( @RequestParam Long id) {
+		return annonceService.getAnnonceCovoiById(id);
+	}
+	
 	
 		
 	

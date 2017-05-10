@@ -20,6 +20,8 @@ public interface AnnonceService {
 	
 	public void delete(Long id );
 	
+	///////////////////////////////////////////
+	
 	public Annonce addAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
 			String adresseArrivee,Long nombrePlaces, Long cotisation, Long id);
 	public List<Annonce> getAnnonces(Long id);
@@ -32,5 +34,7 @@ public interface AnnonceService {
 			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id, Long idUtilisateur);
 	
 	public void deleteAnnonceCovoi(Long id);
+	
+	public AnnonceCovoi getAnnonceCovoiById(Long id);
 	
 }
