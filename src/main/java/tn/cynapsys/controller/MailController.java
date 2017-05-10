@@ -32,16 +32,12 @@ public class MailController {
 	public Boolean saveUser(@PathVariable String mail) {
 		System.out.println(mail);
 		if (mail != null) {
-			Random randomno = new Random();
-			long num = (long) Math.abs(randomno.nextInt());
-			long num1 = (long) Math.abs(randomno.nextInt());
-		Utilisateur u = utilisateurService.getUtilisateurbyEmail(mail);
-			String nMotDpass = (long) Math.abs(randomno.nextInt())+"";
+			Random random = new Random();
+			Utilisateur u = utilisateurService.getUtilisateurbyEmail(mail);
+			String nMotDpass = (long) Math.abs(random	.nextInt()) + "";
 			u.setMotDePasse(nMotDpass);
 			System.out.println(nMotDpass);
-			System.out.println(num);
-
-			System.out.println(num1);
+			
 
 			String d_email = "hamdi.ankoud@gmail.com", d_password = "angoud95290591", d_host = "smtp.gmail.com",
 					d_port = "465",
@@ -52,16 +48,15 @@ public class MailController {
 
 					// get next long value
 
-					m_text = " login: "
-							+ mail + " passeword: "+ nMotDpass;
+					m_text = " login: " + mail + " passeword: " + nMotDpass;
 
 			Properties props = new Properties();
 			props.put("mail.smtp.user", d_email);
 			props.put("mail.smtp.host", d_host);
 			props.put("mail.smtp.port", d_port);
 			props.put("mail.smtp.starttls.enable", "true");
-		//	props.put("mail.smtp.auth", "true");
-		//	props.put("mail.smtp.debug", "true");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.debug", "true");
 			props.put("mail.smtp.socketFactory.port", d_port);
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			props.put("mail.smtp.socketFactory.fallback", "false");

@@ -27,7 +27,7 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	@Autowired
 	private UtilisateurRepository util;
 	@Autowired
-	private UtilisateurService Utilisateurservice;
+	private UtilisateurService utilisateurservice;
 	@Autowired
 	private PaysRepository paysRepository;
 	@Autowired
@@ -56,7 +56,7 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	//	Role role = new Role("USER");
 	//	u.setRole(role);
 		
-	//	Utilisateurservice.update(u);
+	//	utilisateurservice.update(u);
 		/*
 		 * LocalDateTime c=LocalDateTime.now(); System.out.println(c);
 		 * LocalDateTime a=LocalDateTime.now();
