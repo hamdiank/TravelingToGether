@@ -145,6 +145,11 @@ public class AnnonceServiceImpl implements AnnonceService{
 		
 	}
 
+	@Override
+	public AnnonceCovoi getAnnonceCovoiById(Long id) {
+		return annonceCovoiRepository.findOne(id);
+	}
+
 
 	
 
