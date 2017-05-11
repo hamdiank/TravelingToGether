@@ -16,12 +16,15 @@ public class AnnonceCovoi extends Annonce{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AnnonceCovoi(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
-			Utilisateur utilisateur, Long nombrePlaces, Long cotisation) {
-		super(id, datePublication, dateDepart, adresseDepart, adresseArrivee, utilisateur);
+	public AnnonceCovoi(String datePublication, String heureDepart, String dateDepart, String paysDepart,
+			String villeDepart, String paysArrivee, String villeArrivee, Utilisateur utilisateur, Long nombrePlaces,
+			Long cotisation) {
+		super(datePublication, heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee,
+				utilisateur);
 		this.nombrePlaces = nombrePlaces;
 		this.cotisation = cotisation;
 	}
+
 	public Long getNombrePlaces() {
 		return nombrePlaces;
 	}
@@ -34,5 +37,6 @@ public class AnnonceCovoi extends Annonce{
 	public void setCotisation(Long cotisation) {
 		this.cotisation = cotisation;
 	}
+
 
 }

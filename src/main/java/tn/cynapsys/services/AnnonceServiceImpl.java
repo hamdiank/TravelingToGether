@@ -92,16 +92,19 @@ public class AnnonceServiceImpl implements AnnonceService{
 	}
 
 	@Override
-	public Annonce addAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
-			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id) {
+	public Annonce addAnnonceCovoi( String heureDepart, String dateDepart, String paysDepart,
+			String villeDepart, String paysArrivee, String villeArrivee, Long nombrePlaces,
+			Long cotisation, Long id) {
 		AnnonceCovoi annonceCovoi= new AnnonceCovoi();
-		annonceCovoi.setAdresseDepart(adresseDepart);
-		annonceCovoi.setAdresseArrivee(adresseArrivee);
+		annonceCovoi.setHeureDepart(heureDepart);
 		annonceCovoi.setCotisation(cotisation);
 		annonceCovoi.setDateDepart(dateDepart);
-		annonceCovoi.setDatePublication(datePublication);
 		annonceCovoi.setNombrePlaces(nombrePlaces);
-		
+		annonceCovoi.setPaysArrivee(paysArrivee);
+		annonceCovoi.setVilleArrivee(villeArrivee);
+		annonceCovoi.setPaysDepart(paysDepart);
+		annonceCovoi.setVilleDepart(villeDepart);
+
 		Utilisateur utilisateur= utilisateurRepository.findOne(id);
 		
 		annonceCovoi.setUtilisateur(utilisateur);
@@ -125,15 +128,19 @@ public class AnnonceServiceImpl implements AnnonceService{
 	}
 
 	@Override
-	public AnnonceCovoi updateAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
-			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id, Long idUtilisateur) {
+	public AnnonceCovoi updateAnnonceCovoi(String heureDepart, String dateDepart, String paysDepart,
+			String villeDepart, String paysArrivee, String villeArrivee, Long nombrePlaces,
+			Long cotisation, Long id, Long idUtilisateur) {
 		AnnonceCovoi annonceCovoi= annonceCovoiRepository.findOne(id);
-		annonceCovoi.setAdresseDepart(adresseDepart);
-		annonceCovoi.setAdresseArrivee(adresseArrivee);
-		annonceCovoi.setCotisation(cotisation);
+		annonceCovoi.setHeureDepart(heureDepart);
 		annonceCovoi.setDateDepart(dateDepart);
-		annonceCovoi.setDatePublication(datePublication);
+		annonceCovoi.setPaysDepart(paysDepart);
+		annonceCovoi.setVilleDepart(villeDepart);
+		annonceCovoi.setPaysArrivee(paysArrivee);
+		annonceCovoi.setVilleArrivee(villeArrivee);
 		annonceCovoi.setNombrePlaces(nombrePlaces);
+		annonceCovoi.setCotisation(cotisation);
+		annonceCovoi.setId(id);
 		Utilisateur utilisateur= utilisateurRepository.findOne(idUtilisateur);
 		annonceCovoi.setUtilisateur(utilisateur);
 		return annonceCovoiRepository.saveAndFlush(annonceCovoi);

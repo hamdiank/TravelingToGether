@@ -36,10 +36,10 @@ public class AnnonceRestController {
 	//////////////////////////////////////////////////////
 	
 	@RequestMapping(value = "/ajoutAnnonceCovoi", method=RequestMethod.PUT)
-	public Annonce ajout(@RequestParam String datePublication,@RequestParam String dateDepart,
-			@RequestParam String adresseDepart,@RequestParam String adresseArrivee,
-			@RequestParam Long nombrePlaces, @RequestParam Long cotisation,@RequestParam Long id ) {
-		return annonceService.addAnnonceCovoi(datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id);
+	public Annonce ajout(@RequestParam String heureDepart,@RequestParam String dateDepart, @RequestParam String paysDepart,
+			@RequestParam String villeDepart, @RequestParam String paysArrivee,@RequestParam String villeArrivee,@RequestParam Long nombrePlaces,
+			@RequestParam Long cotisation, @RequestParam Long id ) {
+		return annonceService.addAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id);
 	}
 	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.GET)
 	public  List <AnnonceCovoi> getMaListeAnnonceCovoi(@RequestParam Long id) {
@@ -47,10 +47,10 @@ public class AnnonceRestController {
 	}
 	
 	@RequestMapping(value = "/updateAnnonceCovoi", method=RequestMethod.PUT)
-	public AnnonceCovoi update(@RequestParam String datePublication,@RequestParam String dateDepart,
-			@RequestParam String adresseDepart,@RequestParam String adresseArrivee,
-			@RequestParam Long nombrePlaces, @RequestParam Long cotisation,@RequestParam Long id, @RequestParam Long idUtilisateur) {
-		return annonceService.updateAnnonceCovoi(datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id, idUtilisateur);
+	public AnnonceCovoi update(@RequestParam String heureDepart,@RequestParam String dateDepart, @RequestParam String paysDepart,
+			@RequestParam String villeDepart, @RequestParam String paysArrivee,@RequestParam String villeArrivee,@RequestParam Long nombrePlaces,
+			@RequestParam Long cotisation,@RequestParam Long id, @RequestParam Long idUtilisateur) {
+		return annonceService.updateAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id, idUtilisateur);
 	}
 	
 	@RequestMapping(value = "/deleteAnnonceCovoi/{id}", method=RequestMethod.DELETE)
