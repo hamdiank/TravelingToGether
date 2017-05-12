@@ -78,8 +78,8 @@ public class LoginController {
 		} else {
 			response.setStatus(response.SC_UNAUTHORIZED);
 			System.out.println("null null null bhhhhb");
-			return null;
-			// throw new UsernameNotFoundException("Wrong Credentials ");
+			
+			 throw new UsernameNotFoundException("Wrong Credentials ");
 		}
 	}
 }

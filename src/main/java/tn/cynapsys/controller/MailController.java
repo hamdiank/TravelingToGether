@@ -39,7 +39,7 @@ public class MailController {
 			System.out.println(nMotDpass);
 			
 
-			String d_email = "hamdi.ankoud@gmail.com", d_password = "angoud95290591", d_host = "smtp.gmail.com",
+			String d_email = "votre mail", d_password = "votre mot de passe", d_host = "smtp.gmail.com",
 					d_port = "465",
 
 					m_to = mail,

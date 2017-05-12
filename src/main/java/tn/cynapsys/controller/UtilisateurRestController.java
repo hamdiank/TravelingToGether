@@ -36,7 +36,12 @@ public class UtilisateurRestController {
 	}
 	@RequestMapping(value = "/utilisateur", method=RequestMethod.PUT)
 	public Utilisateur update(@RequestBody Utilisateur u) {
-		
+		System.out.println(u.getLogin());
+		System.out.println(u.getEmail());
+		System.out.println(u.getNom());
+		System.out.println(u.getNumTelephone());
+		System.out.println(u.getPrenom());
+		System.out.println(u.getMotDePasse());
 		return utilisateurService.update(u);
 	}
 	

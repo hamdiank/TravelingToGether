@@ -32,6 +32,7 @@ public class Utilisateur {
 	private String numTelephone;
 	private String login;
 	private boolean etat ;
+	private String description;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="CodeRole")
@@ -51,7 +52,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
-			String profession, String sexe, String numTelephone, String login, boolean etat, Role role) {
+			String profession, String sexe, String numTelephone, String login, boolean etat, Role role,String description) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -64,6 +65,7 @@ public class Utilisateur {
 		this.login = login;
 		this.etat = etat;
 		this.role = role;
+		this.description=description;
 	}
 
 	public Long getIdUtilisateur() {
@@ -160,6 +162,23 @@ public class Utilisateur {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 
 	public Collection<Annonce> getAnnonces() {
