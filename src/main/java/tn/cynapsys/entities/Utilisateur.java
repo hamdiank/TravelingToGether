@@ -33,6 +33,7 @@ public class Utilisateur {
 	private String login;
 	private boolean etat ;
 	private String description;
+	private String avatarSrc;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="CodeRole")
@@ -48,7 +49,7 @@ public class Utilisateur {
 
 	public Utilisateur() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
@@ -66,6 +67,7 @@ public class Utilisateur {
 		this.etat = etat;
 		this.role = role;
 		this.description=description;
+		this.avatarSrc="male-avatar-4.png";
 	}
 
 	public Long getIdUtilisateur() {
@@ -187,6 +189,14 @@ public class Utilisateur {
 
 	public void setAnnonces(Collection<Annonce> annonces) {
 		this.annonces = annonces;
+	}
+
+	public String getAvatarSrc() {
+		return avatarSrc;
+	}
+
+	public void setAvatarSrc(String avatarSrc) {
+		this.avatarSrc = avatarSrc;
 	}
 	
 
