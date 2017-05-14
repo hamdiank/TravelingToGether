@@ -51,12 +51,12 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	public void run(String... arg0) throws Exception {
 
 	
-		Utilisateur u = utilisateurRepository.findOne(Long.valueOf(1 + ""));
+		//Utilisateur u = utilisateurRepository.findOne(Long.valueOf(1 + ""));
 		//System.out.println(u.getRole().getTypeRole());
-	Role role = new Role("USER");
-	u.setRole(role);
+	//Role role = new Role("USER");
+	//u.setRole(role);
 		
-		utilisateurservice.update(u);
+	//	utilisateurservice.update(u);
 		/*
 		 * LocalDateTime c=LocalDateTime.now(); System.out.println(c);
 		 * LocalDateTime a=LocalDateTime.now();
