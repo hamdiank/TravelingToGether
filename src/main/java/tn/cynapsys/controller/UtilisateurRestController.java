@@ -42,11 +42,13 @@ public class UtilisateurRestController {
 		System.out.println(u.getNumTelephone());
 		System.out.println(u.getPrenom());
 		System.out.println(u.getMotDePasse());
+		System.out.println(u.getDateNaissance());
+		System.out.println(u.getDescription());
 		return utilisateurService.update(u);
 	}
 	
 	@RequestMapping(value = "/utilisateur/{id}", method=RequestMethod.DELETE)
-	public void delete(@RequestBody Utilisateur u, @PathVariable Long id) {
+	public void delete(@PathVariable Long id) {
 		utilisateurService.delete(id);
 	}
 	@RequestMapping(value = "/countOfUsers", method=RequestMethod.GET)

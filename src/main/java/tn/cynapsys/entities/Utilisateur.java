@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -21,7 +22,6 @@ public class Utilisateur {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUtilisateur;
-	
 	private String nom;
 	private String prenom;
 	private String email;
@@ -38,11 +38,11 @@ public class Utilisateur {
 	@JoinColumn(name="CodeRole")
 	private Role  role;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="author")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="author")
+	@JsonIgnore
 	private List<Message> messages;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
-
 	 @JsonIgnoreProperties(value = "utilisateur")
 	private Collection<Annonce> annonces ;
 
