@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -46,6 +47,10 @@ public class Utilisateur {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
 	 @JsonIgnoreProperties(value = "utilisateur")
 	private Collection<Annonce> annonces ;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="PREFERENCES_ID")
+	private Preferences preferences;
 
 	public Utilisateur() {
 		super();
@@ -68,6 +73,7 @@ public class Utilisateur {
 		this.role = role;
 		this.description=description;
 		this.avatarSrc="male-avatar-4.png";
+		this.preferences=new Preferences();
 	}
 
 	public Long getIdUtilisateur() {
@@ -198,6 +204,15 @@ public class Utilisateur {
 	public void setAvatarSrc(String avatarSrc) {
 		this.avatarSrc = avatarSrc;
 	}
+
+	public Preferences getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(Preferences preferences) {
+		this.preferences = preferences;
+	}
+	
 	
 
 	

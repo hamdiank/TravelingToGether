@@ -1,9 +1,12 @@
 package tn.cynapsys.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.cynapsys.entities.Utilisateur;
 import tn.cynapsys.services.UtilisateurService;
@@ -80,6 +85,31 @@ public class UtilisateurRestController {
 				return new ResponseEntity<org.springframework.core.io.Resource>(HttpStatus.NOT_FOUND);
 			}
 		}
+		
+		
+		@RequestMapping(value = "/upload", method = RequestMethod.POST)
+		public ResponseEntity<String> setUserImage(@RequestParam("file")MultipartFile file,@RequestParam("id")String id,HttpServletResponse response) throws Exception{
+			System.out.println("heere");
+			if(file.isEmpty()){
+				response.setStatus(response.SC_BAD_REQUEST);
+				return null ; 
+			}
+			try {
+				String imagePath = System.getProperty("user.dir")+"/src/main/resources/" ; 
+				  byte[] bytes = file.getBytes();
+		            Path path = Paths.get(imagePath+file.getOriginalFilename());
+		            Files.write(path, bytes);
+		       Utilisateur u =    utilisateurService.getUtilisateur(Long.valueOf(id));
+		      System.out.println(file.getOriginalFilename());
+		       u.setAvatarSrc(file.getOriginalFilename());
+		       utilisateurService.update(u);
+					return new ResponseEntity<String>(file.getOriginalFilename(),HttpStatus.ACCEPTED);
+			} catch (Exception e) {
+				throw e ; 
+			}
+		}
+			
+			
 	
 
 }
