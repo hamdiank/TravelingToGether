@@ -65,14 +65,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur getUtilisateur(Long id) {
-		// TODO Auto-generated method stub
 		return utilisateurRepository.findOne(id);
 	}
 
 	@Override
 	public Utilisateur saveUtilisateur(Utilisateur u) {
-		// TODO Auto-generated method stub
-		return utilisateurRepository.save(u);
+				return utilisateurRepository.save(u);
 	}
 
 	@Override

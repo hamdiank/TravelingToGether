@@ -17,11 +17,11 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
 public class Utilisateur {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUtilisateur;
 	private String nom;
 	private String prenom;
@@ -32,33 +32,52 @@ public class Utilisateur {
 	private String sexe;
 	private String numTelephone;
 	private String login;
-	private boolean etat ;
+	private boolean etat;
 	private String description;
 	private String avatarSrc;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="CodeRole")
-	private Role  role;
-	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy="author")
+	@JoinColumn(name = "CodeRole")
+	private Role role;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
 	@JsonIgnore
 	private List<Message> messages;
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy="utilisateur")
-	 @JsonIgnoreProperties(value = "utilisateur")
-	private Collection<Annonce> annonces ;
-	
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
+	@JsonIgnore
+	private List<Avis> avis;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
+	@JsonIgnoreProperties(value = "utilisateur")
+	private Collection<Annonce> annonces;
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="PREFERENCES_ID")
+	@JoinColumn(name = "PREFERENCES_ID")
 	private Preferences preferences;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "VOITURE_ID")
+	private Voiture voiture;
 
 	public Utilisateur() {
 		super();
-		
+
 	}
 
+	
+	
+	
+	
+	
+
+
+
+
+
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
-			String profession, String sexe, String numTelephone, String login, boolean etat, Role role,String description) {
+			String profession, String sexe, String numTelephone, String login, boolean etat, Role role,
+			String description, Voiture voiture,List<Message> messages, List<Avis> avis) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -71,9 +90,12 @@ public class Utilisateur {
 		this.login = login;
 		this.etat = etat;
 		this.role = role;
-		this.description=description;
-		this.avatarSrc="male-avatar-4.png";
-		this.preferences=new Preferences();
+		this.description = description;
+		this.avatarSrc = "init.png";
+		this.preferences = new Preferences();
+		this.voiture = voiture;
+		this.messages = messages;
+		this.avis = avis;
 	}
 
 	public Long getIdUtilisateur() {
@@ -172,7 +194,6 @@ public class Utilisateur {
 		this.role = role;
 	}
 
-	
 	public String getDescription() {
 		return description;
 	}
@@ -212,8 +233,23 @@ public class Utilisateur {
 	public void setPreferences(Preferences preferences) {
 		this.preferences = preferences;
 	}
-	
-	
 
+	public Voiture getVoiture() {
+		return voiture;
+	}
+
+	public void setVoiture(Voiture voiture) {
+		this.voiture = voiture;
+	}
+
+	public List<Avis> getAvis() {
+		return avis;
+	}
+
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+	}
+
+	
 	
 }

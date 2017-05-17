@@ -71,45 +71,83 @@ public class UtilisateurRestController {
 		return utilisateurService.countOfUsers();
 	}
 
+	@RequestMapping(value = "/getImage/{id}", method = RequestMethod.GET)
+	public ResponseEntity<org.springframework.core.io.Resource> getImage(@PathVariable Long id) {
+		System.out.println("enter");
+		String image = utilisateurService.getUtilisateur(id).getAvatarSrc();
+		try {
+			// String path = Paths.get(ROOT, filename).toString();
 
-		@RequestMapping(value = "/getImage/{id}", method = RequestMethod.GET)
-		public ResponseEntity<org.springframework.core.io.Resource> getImage(@PathVariable Long id) {
-			System.out.println("enter");
-			String image =utilisateurService.getUtilisateur(id).getAvatarSrc();
-			try {
-				// String path = Paths.get(ROOT, filename).toString();
-				org.springframework.core.io.Resource loader = resourceLoader.getResource("classpath:" + image);
-				System.out.println(loader);
-				return new ResponseEntity<org.springframework.core.io.Resource>(loader, HttpStatus.OK);
-			} catch (Exception e) {
-				return new ResponseEntity<org.springframework.core.io.Resource>(HttpStatus.NOT_FOUND);
-			}
+			org.springframework.core.io.Resource loader = resourceLoader.getResource("classpath:" + image);
+			System.out.println(loader);
+
+			return new ResponseEntity<org.springframework.core.io.Resource>(loader, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<org.springframework.core.io.Resource>(HttpStatus.NOT_FOUND);
 		}
-		
-		
-		@RequestMapping(value = "/upload", method = RequestMethod.POST)
-		public ResponseEntity<String> setUserImage(@RequestParam("file")MultipartFile file,@RequestParam("id")String id,HttpServletResponse response) throws Exception{
-			System.out.println("heere");
-			if(file.isEmpty()){
-				response.setStatus(response.SC_BAD_REQUEST);
-				return null ; 
-			}
-			try {
-				String imagePath = System.getProperty("user.dir")+"/src/main/resources/" ; 
-				  byte[] bytes = file.getBytes();
-		            Path path = Paths.get(imagePath+file.getOriginalFilename());
-		            Files.write(path, bytes);
-		       Utilisateur u =    utilisateurService.getUtilisateur(Long.valueOf(id));
-		      System.out.println(file.getOriginalFilename());
-		       u.setAvatarSrc(file.getOriginalFilename());
-		       utilisateurService.update(u);
-					return new ResponseEntity<String>(file.getOriginalFilename(),HttpStatus.ACCEPTED);
-			} catch (Exception e) {
-				throw e ; 
-			}
+	}
+
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public ResponseEntity<String> setUserImage(@RequestParam("file") MultipartFile file, @RequestParam("id") String id,
+			HttpServletResponse response) throws Exception {
+		System.out.println("heere");
+		if (file.isEmpty()) {
+			response.setStatus(response.SC_BAD_REQUEST);
+			return null;
 		}
-			
-			
-	
+		try {
+			String imagePath = System.getProperty("user.dir") + "/src/main/resources/";
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get(imagePath + file.getOriginalFilename());
+			Files.write(path, bytes);
+			Utilisateur u = utilisateurService.getUtilisateur(Long.valueOf(id));
+			System.out.println(file.getOriginalFilename());
+			u.setAvatarSrc(file.getOriginalFilename());
+			utilisateurService.update(u);
+			return new ResponseEntity<String>(file.getOriginalFilename(), HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@RequestMapping(value = "/uploadVoiture", method = RequestMethod.POST)
+	public ResponseEntity<String> setVoitureImage(@RequestParam("file") MultipartFile file,
+			@RequestParam("id") String id, HttpServletResponse response) throws Exception {
+		System.out.println("heere");
+		if (file.isEmpty()) {
+			response.setStatus(response.SC_BAD_REQUEST);
+			return null;
+		}
+		try {
+			String imagePath = System.getProperty("user.dir") + "/src/main/resources/";
+			byte[] bytes = file.getBytes();
+			Path path = Paths.get(imagePath + file.getOriginalFilename());
+
+			Files.write(path, bytes);
+			Utilisateur u = utilisateurService.getUtilisateur(Long.valueOf(id));
+			System.out.println(file.getOriginalFilename());
+			System.out.println("pathgg  : " + path);
+			u.getVoiture().setVoitureAvatar(file.getOriginalFilename());
+			utilisateurService.update(u);
+			return new ResponseEntity<String>(file.getOriginalFilename(), HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@RequestMapping(value = "/getImageVoiture/{id}", method = RequestMethod.GET)
+	public ResponseEntity<org.springframework.core.io.Resource> getImageVoiture(@PathVariable Long id) {
+		System.out.println("enter21");
+		String image = utilisateurService.getUtilisateur(id).getVoiture().getVoitureAvatar();
+		try {
+			// String path = Paths.get(ROOT, filename).toString();
+			org.springframework.core.io.Resource loader = resourceLoader.getResource("classpath:" + image);
+			System.out.println(loader);
+
+			return new ResponseEntity<org.springframework.core.io.Resource>(loader, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<org.springframework.core.io.Resource>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 }

@@ -7,12 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tn.cynapsys.dao.AnnonceRepository;
 import tn.cynapsys.dao.AvionRepository;
+import tn.cynapsys.dao.AvisRepository;
 import tn.cynapsys.dao.MessageRepository;
 import tn.cynapsys.dao.PaysRepository;
 import tn.cynapsys.dao.RoleRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.dao.VoitureRepository;
-import tn.cynapsys.entities.Preferences;
+import tn.cynapsys.entities.Avis;
 import tn.cynapsys.entities.Utilisateur;
 import tn.cynapsys.services.UtilisateurService;
 
@@ -20,7 +21,8 @@ import tn.cynapsys.services.UtilisateurService;
 public class TravelingToGetherApplication implements CommandLineRunner {
 	@Autowired
 	private VoitureRepository voitureRepository;
-
+	@Autowired
+	private AvisRepository avisRepository;
 	@Autowired
 	private AvionRepository avionRepository;
 	@Autowired
@@ -47,14 +49,16 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-
-		//Utilisateur u = utilisateurRepository.findOne(Long.valueOf(4 + ""));
+	//	Utilisateur u = utilisateurRepository.findOne(Long.valueOf("1"));
+		//Avis a=new Avis(Long.valueOf("4"), u, "je le recommande");
+	//	Voiture v = new Voiture("marque1", "model1", 3, "energie1");
+	//	Utilisateur u = utilisateurRepository.findOne(Long.valueOf(4 + ""));
 		// System.out.println(u.getRole().getTypeRole());
 		//
 
-	//	u.setPreferences(new Preferences());
+		//avisRepository.save(a);
 
-		//utilisateurservice.update(u);
+	
 		/*
 		 * LocalDateTime c=LocalDateTime.now(); System.out.println(c);
 		 * LocalDateTime a=LocalDateTime.now();
