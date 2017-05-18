@@ -59,20 +59,18 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public List<Utilisateur> listUtilisateur() {
-		// TODO Auto-generated method stub
-		return utilisateurRepository.findAll();
+
+		return utilisateurRepository.getAll();
 	}
 
 	@Override
 	public Utilisateur getUtilisateur(Long id) {
-		// TODO Auto-generated method stub
 		return utilisateurRepository.findOne(id);
 	}
 
 	@Override
 	public Utilisateur saveUtilisateur(Utilisateur u) {
-		// TODO Auto-generated method stub
-		return utilisateurRepository.save(u);
+				return utilisateurRepository.save(u);
 	}
 
 	@Override
@@ -95,16 +93,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Role getUserRole(Long id) {
-		
+
 		return utilisateurRepository.findOne(id).getRole();
 	}
 
 	@Override
 	public Utilisateur getUtilisateurbyEmail(String email) {
-		
+
 		return utilisateurRepository.findUtilisateurByEmail(email);
 	}
-
-	
 
 }

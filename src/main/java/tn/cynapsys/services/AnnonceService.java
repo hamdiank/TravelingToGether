@@ -1,11 +1,9 @@
 package tn.cynapsys.services;
 
-import java.util.Date;
 import java.util.List;
 
 import tn.cynapsys.entities.Annonce;
 import tn.cynapsys.entities.AnnonceCovoi;
-import tn.cynapsys.entities.Utilisateur;
 
 public interface AnnonceService {
 	

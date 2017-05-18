@@ -20,4 +20,6 @@ public interface MessageRepository extends JpaRepository<Message, Long>{
 	
 	List<Message> findByAuthor(Utilisateur U);
 	
+	@Query("SELECT message FROM Message message WHERE (message.idDestinataire =:id1 AND  message.author.idUtilisateur =:id2)OR (message.idDestinataire =:id2 AND  message.author.idUtilisateur =:id1)  ")
+	List<Message> findConversation(@Param("id1") Long id1,@Param("id2") Long id2);
 }

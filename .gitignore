@@ -8,7 +8,7 @@ target/
 .project
 .settings
 .springBeans
-
+.png
 ### IntelliJ IDEA ###
 .idea
 *.iws

@@ -7,27 +7,28 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tn.cynapsys.dao.AnnonceRepository;
 import tn.cynapsys.dao.AvionRepository;
+import tn.cynapsys.dao.AvisRepository;
 import tn.cynapsys.dao.MessageRepository;
 import tn.cynapsys.dao.PaysRepository;
 import tn.cynapsys.dao.RoleRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.dao.VoitureRepository;
-import tn.cynapsys.entities.Message;
-import tn.cynapsys.entities.Role;
+import tn.cynapsys.entities.Avis;
 import tn.cynapsys.entities.Utilisateur;
 import tn.cynapsys.services.UtilisateurService;
 
 @SpringBootApplication
 public class TravelingToGetherApplication implements CommandLineRunner {
 	@Autowired
-	private VoitureRepository voitureRepository;
-
+	private VoitureRepository voitureRepository; 
+	@Autowired
+	private AvisRepository avisRepository;
 	@Autowired
 	private AvionRepository avionRepository;
 	@Autowired
 	private UtilisateurRepository util;
 	@Autowired
-	private UtilisateurService Utilisateurservice;
+	private UtilisateurService utilisateurservice;
 	@Autowired
 	private PaysRepository paysRepository;
 	@Autowired
@@ -39,7 +40,6 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 	private UtilisateurRepository utilisateurRepository;
 	@Autowired
 	private MessageRepository messageRepository;
-	
 
 	public static void main(String[] args) {
 
@@ -49,22 +49,38 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
+	//	Utilisateur u = utilisateurRepository.findOne(Long.valueOf("1"));
+		//Avis a=new Avis(Long.valueOf("4"), u, "je le recommande");
+	//	Voiture v = new Voiture("marque1", "model1", 3, "energie1");
+	//	Utilisateur u = utilisateurRepository.findOne(Long.valueOf(4 + ""));
+		// System.out.println(u.getRole().getTypeRole());
+		//
 
-	
+		//avisRepository.save(a);
+
+
 	//  Utilisateur u = utilisateurRepository.findOne(Long.valueOf(2 + ""));
 	//	System.out.println(u.getRole().getTypeRole());
 	//	Role role = new Role("USER");
 	//	u.setRole(role);
 		
 	//	Utilisateurservice.update(u);
+
 		/*
 		 * LocalDateTime c=LocalDateTime.now(); System.out.println(c);
 		 * LocalDateTime a=LocalDateTime.now();
 		 */
+
 		
 	//	Message message = new Message(Long.valueOf(2 + ""), u, "first message");
 
 	//	messageRepository.save(message);
+
+		// Message message = new Message(Long.valueOf(2 + ""), u, "first
+		// message");
+
+		// messageRepository.save(message);
+
 
 		/*
 		 * List<City>c=new ArrayList<City>(); List<Aeroport>ae=new

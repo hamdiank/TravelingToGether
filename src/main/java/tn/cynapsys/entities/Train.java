@@ -1,11 +1,13 @@
 package tn.cynapsys.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Train {
+public class Train implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
