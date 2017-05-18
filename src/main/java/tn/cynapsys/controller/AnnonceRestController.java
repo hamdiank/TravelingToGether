@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.cynapsys.entities.Annonce;
 import tn.cynapsys.entities.AnnonceCovoi;
+import tn.cynapsys.entities.Avion;
 import tn.cynapsys.services.AnnonceService;
 
 @CrossOrigin(origins="*")
@@ -39,6 +40,7 @@ public class AnnonceRestController {
 	public Annonce ajout(@RequestParam String heureDepart,@RequestParam String dateDepart, @RequestParam String paysDepart,
 			@RequestParam String villeDepart, @RequestParam String paysArrivee,@RequestParam String villeArrivee,@RequestParam Long nombrePlaces,
 			@RequestParam Long cotisation, @RequestParam Long id ) {
+		
 		return annonceService.addAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id);
 	}
 	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.GET)
@@ -57,11 +59,12 @@ public class AnnonceRestController {
 	public void deleteAnnonceCovoi( @PathVariable Long id) {
 		annonceService.deleteAnnonceCovoi(id);
 	}
-	@RequestMapping(value = "/getAnnonceCovoiById", method=RequestMethod.GET)
-	public AnnonceCovoi getAnnonceCovoiById( @RequestParam Long id) {
+	@RequestMapping(value = "/getAnnonceCovoiById/{id}", method=RequestMethod.GET)
+	public AnnonceCovoi getAnnonceCovoiById( @PathVariable("id") Long id) {
 		return annonceService.getAnnonceCovoiById(id);
 	}
-	
+
+
 	
 		
 	
