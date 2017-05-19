@@ -39,6 +39,7 @@ public class AnnonceRestController {
 	public Annonce ajout(@RequestParam String datePublication,@RequestParam String dateDepart,
 			@RequestParam String adresseDepart,@RequestParam String adresseArrivee,
 			@RequestParam Long nombrePlaces, @RequestParam Long cotisation,@RequestParam Long id ) {
+		System.out.println("hehehhehehehe");
 		return annonceService.addAnnonceCovoi(datePublication, dateDepart, adresseDepart, adresseArrivee, nombrePlaces, cotisation, id);
 	}
 	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.GET)

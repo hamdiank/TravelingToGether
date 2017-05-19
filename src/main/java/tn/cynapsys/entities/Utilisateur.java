@@ -77,7 +77,7 @@ public class Utilisateur {
 
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
 			String profession, String sexe, String numTelephone, String login, boolean etat, Role role,
-			String description, Voiture voiture,List<Message> messages, List<Avis> avis) {
+			String description,List<Message> messages, List<Avis> avis) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -93,7 +93,7 @@ public class Utilisateur {
 		this.description = description;
 		this.avatarSrc = "init.png";
 		this.preferences = new Preferences();
-		this.voiture = voiture;
+		this.voiture = new Voiture();
 		this.messages = messages;
 		this.avis = avis;
 	}
