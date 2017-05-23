@@ -2,6 +2,10 @@ package tn.cynapsys.services;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,9 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
 	AnnonceCovoiRepository annonceCovoiRepository;
+	
+	@PersistenceContext
+	private EntityManager em;
 	
 	
 	
@@ -64,6 +71,17 @@ public class ReservationServiceImpl implements ReservationService{
 	public List <Reservation> getReservationByUtilisateurReservation(Long idUtilisateur) {
 		Utilisateur utilisateurReservation= utilisateurRepository.findOne(idUtilisateur);
 		return utilisateurReservation.getReservations();
+	}
+
+	@Override
+	public Reservation getReservationByUtilisateurReservationAndByAnnonceCovoi(Long idUtilisateur,
+			Long idAnnonceCovoi) {
+		Query req= em.createQuery("select r from Reservation r where r.utilisateurReservation.id= :x and r.annonceCovoi.id= :y");
+		req.setParameter("x", idUtilisateur);
+		req.setParameter("y", idAnnonceCovoi);
+		
+		return (Reservation) req.getSingleResult();
+
 	}
 	
 

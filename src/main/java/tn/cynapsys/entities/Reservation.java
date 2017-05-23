@@ -24,11 +24,11 @@ public class Reservation implements Serializable{
 	private  Boolean etat;
 	
 	@ManyToOne
-	//@JsonIgnore
 	@JoinColumn(name="CODE_ANNONCE_COVOI")
 	@JsonIgnoreProperties(value = "reservations")
 	private AnnonceCovoi annonceCovoi;
 	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties(value = "reservations")
 	@JoinColumn(name = "UTILISATEUR_ID")

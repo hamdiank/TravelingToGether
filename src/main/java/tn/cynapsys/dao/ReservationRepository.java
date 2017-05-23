@@ -11,7 +11,7 @@ import tn.cynapsys.entities.Utilisateur;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	public List <Reservation> findByAnnonceCovoi(AnnonceCovoi annonceCovoi);
-//	public List<Reservation> findByUtilisateurReservation(Utilisateur utilisateurReservation);
+	public List<Reservation> findByUtilisateurReservation(Utilisateur utilisateurReservation);
 	
 
 }

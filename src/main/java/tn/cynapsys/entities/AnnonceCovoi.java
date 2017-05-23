@@ -21,9 +21,9 @@ public class AnnonceCovoi extends Annonce{
 	private Long nombrePlaces;
 	private Long cotisation;
 	
-	//@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "annonceCovoi")
-	@JsonIgnoreProperties(value = "annonceCovoi")
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "annonceCovoi")
+	//@JsonIgnoreProperties(value = "annonceCovoi")
 	private List <Reservation> reservations;
 	
 	public AnnonceCovoi() {
