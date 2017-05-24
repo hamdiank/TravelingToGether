@@ -72,6 +72,20 @@ public class ReservationRestController {
 		reservationService.deleteReservation(idReservation);
 	}
 	
+	@RequestMapping(value = "/accepterReservation", method=RequestMethod.PUT)
+	public Reservation accepterReservation(@RequestParam Long idReservation,@RequestParam Boolean etat ) {
+		return reservationService.accepterReservation(idReservation, etat);
+	}
+	
+	@RequestMapping(value = "/refuserReservation", method=RequestMethod.PUT)
+	public Reservation refuserReservation(@RequestParam Long idReservation,@RequestParam Boolean etat ) {
+		return reservationService.refuserReservation(idReservation, etat);
+	}
+	
+	
+	
+	
+	
 
 	
 		

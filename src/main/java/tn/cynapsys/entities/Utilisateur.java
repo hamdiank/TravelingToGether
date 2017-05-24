@@ -48,6 +48,7 @@ public class Utilisateur {
 	@JsonIgnore
 	private List<Avis> avis;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "utilisateur")
 	@JsonIgnoreProperties(value = "utilisateur")
 	private Collection<Annonce> annonces;
@@ -60,7 +61,7 @@ public class Utilisateur {
 	@JoinColumn(name = "VOITURE_ID")
 	private Voiture voiture;
 	
-	
+	@JsonIgnore
 	@OneToMany( fetch = FetchType.LAZY, mappedBy="utilisateurReservation")
 	@JsonIgnoreProperties(value = "utilisateurReservation")
 	private List <Reservation> reservations;

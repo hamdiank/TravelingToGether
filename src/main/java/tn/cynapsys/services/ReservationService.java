@@ -16,6 +16,12 @@ public interface ReservationService  {
 	
 	Reservation getReservationByUtilisateurReservationAndByAnnonceCovoi(Long idUtilisateur, Long idAnnonceCovoi);
 	
+	Reservation accepterReservation(Long idReservation, Boolean etat);
+	
+	Reservation refuserReservation(Long idReservation, Boolean etat);
+	
+	
+	
 	List<Reservation> getAllReservation();
 	
 	Reservation updateReservation(Reservation r, Long id);

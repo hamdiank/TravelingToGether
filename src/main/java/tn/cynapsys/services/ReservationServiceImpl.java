@@ -97,6 +97,20 @@ public class ReservationServiceImpl implements ReservationService{
 		reservationRepository.delete(idReservation);
 		
 	}
+
+	@Override
+	public Reservation accepterReservation(Long idReservation, Boolean etat) {
+		Reservation reservation= reservationRepository.findOne(idReservation);
+		reservation.setEtat(etat);
+		return reservationRepository.saveAndFlush(reservation);
+	}
+
+	@Override
+	public Reservation refuserReservation(Long idReservation, Boolean etat) {
+		Reservation reservation= reservationRepository.findOne(idReservation);
+		reservation.setEtat(etat);
+		return reservationRepository.saveAndFlush(reservation);
+	}
 	
 
 }
