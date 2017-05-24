@@ -3,6 +3,7 @@ package tn.cynapsys.services;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -76,12 +77,25 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public Reservation getReservationByUtilisateurReservationAndByAnnonceCovoi(Long idUtilisateur,
 			Long idAnnonceCovoi) {
-		Query req= em.createQuery("select r from Reservation r where r.utilisateurReservation.id= :x and r.annonceCovoi.id= :y");
-		req.setParameter("x", idUtilisateur);
-		req.setParameter("y", idAnnonceCovoi);
-		
-		return (Reservation) req.getSingleResult();
+		try{
+			Query req= em.createQuery("select r from Reservation r where r.utilisateurReservation.id= :x and r.annonceCovoi.id= :y");
+			req.setParameter("x", idUtilisateur);
+			req.setParameter("y", idAnnonceCovoi);
+			return (Reservation) req.getSingleResult();
+			
+		}catch (NoResultException e) {
+			return null;
+		}
 
+		
+	
+
+	}
+
+	@Override
+	public void deleteReservation(Long idReservation) {
+		reservationRepository.delete(idReservation);
+		
 	}
 	
 

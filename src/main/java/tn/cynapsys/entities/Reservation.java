@@ -29,7 +29,7 @@ public class Reservation implements Serializable{
 	private AnnonceCovoi annonceCovoi;
 	
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JsonIgnoreProperties(value = "reservations")
 	@JoinColumn(name = "UTILISATEUR_ID")
 	private Utilisateur utilisateurReservation;

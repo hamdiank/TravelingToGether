@@ -61,7 +61,7 @@ public class Utilisateur {
 	private Voiture voiture;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="utilisateurReservation")
+	@OneToMany( fetch = FetchType.LAZY, mappedBy="utilisateurReservation")
 	@JsonIgnoreProperties(value = "utilisateurReservation")
 	private List <Reservation> reservations;
 	

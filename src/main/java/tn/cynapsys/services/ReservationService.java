@@ -12,6 +12,8 @@ public interface ReservationService  {
 	
 	List<Reservation> getReservationByUtilisateurReservation(Long idUtilisateur);
 	
+	void deleteReservation(Long idReservation);
+	
 	Reservation getReservationByUtilisateurReservationAndByAnnonceCovoi(Long idUtilisateur, Long idAnnonceCovoi);
 	
 	List<Reservation> getAllReservation();
