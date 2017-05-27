@@ -12,7 +12,9 @@ public interface UtilisateurService {
 	Utilisateur getUtilisateurByMotDePasse(String motDePasse);
 
 	Utilisateur getUtilisateurbyId(Long idUtilisateur);
+	
 	Utilisateur getUtilisateurbyEmail(String email);
+	
 	//Boolean updateUtilisateur(String username,String password, Profile profile);
 
 	//Long addUtilisateur(String username, String password);

@@ -170,7 +170,7 @@ public class PaysRestController {
 		//JSONParser parser = new JSONParser();
 		JsonFactory f = new JsonFactory();
 		JsonParser jp = f.createJsonParser(new File(
-				"C:/Users/hamdi/Downloads/Compressed/CountriesToCitiesJSON-master/CountriesToCitiesJSON-master/countriesToCities.json"));
+				"C:/Users/BESEM/Downloads/countriesToCities.json"));
 
 		JsonToken current;
 		

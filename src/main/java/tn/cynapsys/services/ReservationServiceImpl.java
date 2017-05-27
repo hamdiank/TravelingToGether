@@ -101,6 +101,11 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public Reservation accepterReservation(Long idReservation, Boolean etat) {
 		Reservation reservation= reservationRepository.findOne(idReservation);
+		AnnonceCovoi annonceCovoi=reservation.getAnnonceCovoi();
+		Long nombrePlaces= annonceCovoi.getNombrePlaces();
+		nombrePlaces--;
+		System.out.println(nombrePlaces);
+		annonceCovoi.setNombrePlaces(nombrePlaces);
 		reservation.setEtat(etat);
 		return reservationRepository.saveAndFlush(reservation);
 	}
@@ -108,6 +113,11 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public Reservation refuserReservation(Long idReservation, Boolean etat) {
 		Reservation reservation= reservationRepository.findOne(idReservation);
+		AnnonceCovoi annonceCovoi=reservation.getAnnonceCovoi();
+		Long nombrePlaces= annonceCovoi.getNombrePlaces();
+		nombrePlaces++;
+		System.out.println(nombrePlaces);
+		annonceCovoi.setNombrePlaces(nombrePlaces);
 		reservation.setEtat(etat);
 		return reservationRepository.saveAndFlush(reservation);
 	}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tn.cynapsys.dao.RoleRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.Role;
 import tn.cynapsys.entities.Utilisateur;
@@ -15,6 +16,11 @@ import tn.cynapsys.entities.Utilisateur;
 public class UtilisateurServiceImpl implements UtilisateurService {
 	@Autowired
 	UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
+	
+	
 
 	@Override
 	public Utilisateur getUtilisateurByLogin(String login) {
@@ -53,6 +59,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		utilisateur.setPrenom(prenom);
 		utilisateur.setLogin(login);
 		utilisateur.setMotDePasse(motDePasse);
+		Long idRole= Long.parseLong("2");
+		Role role= roleRepository.findOne(idRole);
+		System.out.println(role);
+		utilisateur.setRole(role);
 
 		return utilisateurRepository.saveAndFlush(utilisateur);
 	}
@@ -70,7 +80,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur saveUtilisateur(Utilisateur u) {
-				return utilisateurRepository.save(u);
+		Long idRole= Long.parseLong("2");
+		Role role= roleRepository.findOne(idRole);
+		System.out.println(role);
+		u.setRole(role);
+		return utilisateurRepository.save(u);
 	}
 
 	@Override
