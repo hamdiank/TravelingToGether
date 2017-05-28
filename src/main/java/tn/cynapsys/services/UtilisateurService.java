@@ -21,6 +21,8 @@ public interface UtilisateurService {
 
 	//Boolean deleteUtilisateur(Long idUtilisateur);
 	
+	public void confirmerInscription(String email);
+	
 	public Utilisateur registerUtilisateur(String nom, String prenom, String login, String motDePasse );
 	
 	public List<Utilisateur> listUtilisateur();

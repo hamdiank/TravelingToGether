@@ -117,4 +117,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return utilisateurRepository.findUtilisateurByEmail(email);
 	}
 
+	@Override
+	public void confirmerInscription(String email) {
+		Utilisateur utilisateur= utilisateurRepository.findUtilisateurByEmail(email);
+		utilisateur.setEtat(true);
+	}
+
 }

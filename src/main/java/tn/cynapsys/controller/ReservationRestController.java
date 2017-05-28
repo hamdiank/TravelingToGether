@@ -47,11 +47,13 @@ public class ReservationRestController {
 	public ResponseEntity<Reservation> ajout(@RequestParam Long idAnnonceCovoi,@RequestParam Long idUtilisateurReservation, @RequestParam Boolean etat) {
 		Reservation reservation= reservationService.getReservationByUtilisateurReservationAndByAnnonceCovoi(idUtilisateurReservation, idAnnonceCovoi);
 		if(reservation!=null){
+				System.out.println(reservation);
 				System.out.println("vous avez déjà faire une reservation");
 				return new ResponseEntity<Reservation>(HttpStatus.NO_CONTENT);
 		}
 		else{
-			reservationService.demandeReservation(idAnnonceCovoi, idUtilisateurReservation, etat);
+			reservation=reservationService.demandeReservation(idAnnonceCovoi, idUtilisateurReservation, etat);
+			System.out.println(reservation);
 		return new ResponseEntity<Reservation>(reservation, HttpStatus.OK);
 					
 		}
