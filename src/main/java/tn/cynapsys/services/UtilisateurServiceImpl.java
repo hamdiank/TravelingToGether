@@ -1,6 +1,7 @@
 package tn.cynapsys.services;
 
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import tn.cynapsys.dao.RoleRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.Role;
 import tn.cynapsys.entities.Utilisateur;
+import tn.cynapsys.entities.Voiture;
 
 @Service
 @Transactional
@@ -84,6 +86,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		Role role= roleRepository.findOne(idRole);
 		System.out.println(role);
 		u.setRole(role);
+		Voiture voiture= new Voiture();
+		voiture.setVoitureAvatar("imageVoiture.png");
+		u.setVoiture(voiture);
+		u.setAvatarSrc("téléchargement.png");
+		tn.cynapsys.entities.Preferences preferences= new tn.cynapsys.entities.Preferences();
+		u.setPreferences(preferences);
 		return utilisateurRepository.save(u);
 	}
 

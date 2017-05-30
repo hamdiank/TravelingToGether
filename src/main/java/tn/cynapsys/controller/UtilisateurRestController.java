@@ -170,6 +170,7 @@ public class UtilisateurRestController {
 		}
 	}
 
+
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ResponseEntity<String> setUserImage(@RequestParam("file") MultipartFile file, @RequestParam("id") String id,
 			HttpServletResponse response) throws Exception {

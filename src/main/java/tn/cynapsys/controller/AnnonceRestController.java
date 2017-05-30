@@ -23,18 +23,20 @@ public class AnnonceRestController {
 	@Autowired
 	private AnnonceService annonceService;
 	
+
+	@RequestMapping(value = "/annonces", method=RequestMethod.POST)
+	public Annonce save(@RequestBody Annonce a) {
+		return annonceService.saveAnnonce(a);
+	}
+	
+	/////////////////////Annonce Covoiturage ////////////////////////////////
+	
 	@RequestMapping(value = "/annonces", method = RequestMethod.GET)
 	public List<AnnonceCovoi> listAnnonceCovoi() {
 		
 		return annonceService.listAnnonceCovoi();
 		
 	}
-	@RequestMapping(value = "/annonces", method=RequestMethod.POST)
-	public Annonce save(@RequestBody Annonce a) {
-		return annonceService.saveAnnonce(a);
-	}
-	
-	//////////////////////////////////////////////////////
 	
 	@RequestMapping(value = "/ajoutAnnonceCovoi", method=RequestMethod.PUT)
 	public Annonce ajout(@RequestParam String heureDepart,@RequestParam String dateDepart, @RequestParam String paysDepart,

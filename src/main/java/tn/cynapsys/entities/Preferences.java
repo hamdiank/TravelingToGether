@@ -28,12 +28,13 @@ public class Preferences implements Serializable{
 		this.animaux = animaux;
 		this.fumeur = fumeur;
 	}
+	
 
 	public Preferences() {
 		super();
-		this.musique = null;
-		this.animaux = null;
-		this.fumeur = null;
+		this.musique = false;
+		this.animaux = false;
+		this.fumeur = false;
 	}
 
 	public Long getId() {
