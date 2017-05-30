@@ -20,7 +20,7 @@ import tn.cynapsys.services.UtilisateurService;
 @SpringBootApplication
 public class TravelingToGetherApplication implements CommandLineRunner {
 	@Autowired
-	private VoitureRepository voitureRepository;
+	private VoitureRepository voitureRepository; 
 	@Autowired
 	private AvisRepository avisRepository;
 	@Autowired
@@ -58,16 +58,29 @@ public class TravelingToGetherApplication implements CommandLineRunner {
 
 		//avisRepository.save(a);
 
-	
+
+	//  Utilisateur u = utilisateurRepository.findOne(Long.valueOf(2 + ""));
+	//	System.out.println(u.getRole().getTypeRole());
+	//	Role role = new Role("USER");
+	//	u.setRole(role);
+		
+	//	Utilisateurservice.update(u);
+
 		/*
 		 * LocalDateTime c=LocalDateTime.now(); System.out.println(c);
 		 * LocalDateTime a=LocalDateTime.now();
 		 */
 
+		
+	//	Message message = new Message(Long.valueOf(2 + ""), u, "first message");
+
+	//	messageRepository.save(message);
+
 		// Message message = new Message(Long.valueOf(2 + ""), u, "first
 		// message");
 
 		// messageRepository.save(message);
+
 
 		/*
 		 * List<City>c=new ArrayList<City>(); List<Aeroport>ae=new

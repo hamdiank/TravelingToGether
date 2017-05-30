@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class UtilisateurRestController {
 	public List<Utilisateur> listUtilisateur() {
 		return utilisateurService.listUtilisateur();
 	}
-
+	
 	@RequestMapping(value = "/utilisateur/{id}", method = RequestMethod.GET)
 	public Utilisateur getUtilisateur(@PathVariable("id") Long id) {
 		return utilisateurService.getUtilisateur(id);

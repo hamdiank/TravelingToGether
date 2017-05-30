@@ -2,6 +2,9 @@ package tn.cynapsys.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import tn.cynapsys.entities.Annonce;
 import tn.cynapsys.entities.AnnonceCovoi;
 
@@ -20,18 +23,21 @@ public interface AnnonceService {
 	
 	public void delete(Long id );
 	
-	///////////////////////////////////////////
-	
-	public Annonce addAnnonceCovoi(String datePublication, String dateDepart, String adresseDepart,
-			String adresseArrivee,Long nombrePlaces, Long cotisation, Long id);
+	///////////////////Annonce Covoiturage ////////////////////////
+	Page<AnnonceCovoi> getAllAnnounceByPage(Pageable pageable);
+
+	public Annonce addAnnonceCovoi(String heureDepart, String dateDepart, String paysDepart,
+			String villeDepart, String paysArrivee, String villeArrivee, Long nombrePlaces,
+			Long cotisation, Long id);
 	public List<Annonce> getAnnonces(Long id);
 	
 	public List<AnnonceCovoi> listAnnonceCovoi();
 	
 	public List<AnnonceCovoi> maListAnnonceCovoi( Long id);
 	
-	public AnnonceCovoi updateAnnonceCovoi( String datePublication, String dateDepart, String adresseDepart,
-			String adresseArrivee, Long nombrePlaces, Long cotisation, Long id, Long idUtilisateur);
+	public AnnonceCovoi updateAnnonceCovoi(String heureDepart, String dateDepart, String paysDepart,
+			String villeDepart, String paysArrivee, String villeArrivee, Long nombrePlaces,
+			Long cotisation, Long id, Long idUtilisateur);
 	
 	public void deleteAnnonceCovoi(Long id);
 	

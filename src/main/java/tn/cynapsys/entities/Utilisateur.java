@@ -49,7 +49,7 @@ public class Utilisateur {
 	private List<Avis> avis;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
-	@JsonIgnoreProperties(value = "utilisateur")
+	@JsonIgnore
 	private Collection<Annonce> annonces;
 
 	@OneToOne(cascade = CascadeType.ALL)

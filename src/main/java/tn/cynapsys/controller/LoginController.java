@@ -1,5 +1,7 @@
 package tn.cynapsys.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class LoginController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> login(@RequestBody Utilisateur utilisateur,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 		BCryptPasswordEncoder passencrypt = new BCryptPasswordEncoder();
 		// System.out.println(utilisateur.getLogin());
 		// System.out.println(utilisateur.getMotDePasse());
@@ -55,8 +57,9 @@ public class LoginController {
 			if (!password.equals(utilisateur.getMotDePasse())) {
 				// System.out.println("enter 2");
 				// if(!pass.equals(password)) {
-				response.setStatus(response.SC_UNAUTHORIZED);
-				throw new UsernameNotFoundException("Wrong Passowrd");
+				response.sendError(HttpStatus.UNAUTHORIZED.value(),"mot de passe non valide!!");
+				return new ResponseEntity<String>("parametres non valide!!",HttpStatus.UNAUTHORIZED);
+			//	throw new UsernameNotFoundException("Wrong Passowrd");
 
 			}
 			Long iduser = utilisateur2.getIdUtilisateur();
@@ -73,13 +76,15 @@ public class LoginController {
 			String token = JwtTokenGenerator.generateToken(jwtUserDto);
 			System.out.println(token);
 			response.setHeader("Token", token);
-			response.setStatus(response.SC_ACCEPTED);
+		response.setStatus(response.SC_ACCEPTED);
+
 			return new ResponseEntity<String>(token, HttpStatus.ACCEPTED);
 		} else {
-			response.setStatus(response.SC_UNAUTHORIZED);
+			//response.setStatus(response.SC_UNAUTHORIZED);
+			response.sendError(HttpStatus.UNAUTHORIZED.value(),"Login et mot de passe non valide!!");
 			System.out.println("null null null bhhhhb");
-			
-			 throw new UsernameNotFoundException("Wrong Credentials ");
+			return new ResponseEntity<String>("parametres non valide!!",HttpStatus.UNAUTHORIZED);
+			// throw new UsernameNotFoundException("Wrong Credentials ");
 		}
 	}
 }

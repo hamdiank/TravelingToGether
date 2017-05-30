@@ -1,10 +1,7 @@
 package tn.cynapsys.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,34 +19,30 @@ public class Annonce implements Serializable{
 	@Id @GeneratedValue
 	private Long id; 
 	private String datePublication;
+	private String heureDepart;
 	private String dateDepart;
-	private String adresseDepart;
-	private String adresseArrivee;
+	private String paysDepart;
+	private String villeDepart;
+	private String paysArrivee;
+	private String villeArrivee;
 	@ManyToOne
-	 @JsonIgnoreProperties(value = "annonce")
+	@JsonIgnoreProperties(value = "annonce")
 	@JoinColumn(name="CODE_UTIL")
 	private Utilisateur utilisateur;
 	public Annonce() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Annonce(String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
-			Utilisateur utilisateur) {
+	public Annonce(String datePublication, String heureDepart, String dateDepart, String paysDepart, String villeDepart,
+			String paysArrivee, String villeArrivee, Utilisateur utilisateur) {
 		super();
 		this.datePublication = datePublication;
+		this.heureDepart = heureDepart;
 		this.dateDepart = dateDepart;
-		this.adresseDepart = adresseDepart;
-		this.adresseArrivee = adresseArrivee;
-		this.utilisateur = utilisateur;
-	}
-	public Annonce(Long id, String datePublication, String dateDepart, String adresseDepart, String adresseArrivee,
-			Utilisateur utilisateur) {
-		super();
-		this.id = id;
-		this.datePublication = datePublication;
-		this.dateDepart = dateDepart;
-		this.adresseDepart = adresseDepart;
-		this.adresseArrivee = adresseArrivee;
+		this.paysDepart = paysDepart;
+		this.villeDepart = villeDepart;
+		this.paysArrivee = paysArrivee;
+		this.villeArrivee = villeArrivee;
 		this.utilisateur = utilisateur;
 	}
 	public Long getId() {
@@ -64,23 +57,41 @@ public class Annonce implements Serializable{
 	public void setDatePublication(String datePublication) {
 		this.datePublication = datePublication;
 	}
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
 	public String getDateDepart() {
 		return dateDepart;
 	}
 	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
-	public String getAdresseDepart() {
-		return adresseDepart;
+	public String getPaysDepart() {
+		return paysDepart;
 	}
-	public void setAdresseDepart(String adresseDepart) {
-		this.adresseDepart = adresseDepart;
+	public void setPaysDepart(String paysDepart) {
+		this.paysDepart = paysDepart;
 	}
-	public String getAdresseArrivee() {
-		return adresseArrivee;
+	public String getVilleDepart() {
+		return villeDepart;
 	}
-	public void setAdresseArrivee(String adresseArrivee) {
-		this.adresseArrivee = adresseArrivee;
+	public void setVilleDepart(String villeDepart) {
+		this.villeDepart = villeDepart;
+	}
+	public String getPaysArrivee() {
+		return paysArrivee;
+	}
+	public void setPaysArrivee(String paysArrivee) {
+		this.paysArrivee = paysArrivee;
+	}
+	public String getVilleArrivee() {
+		return villeArrivee;
+	}
+	public void setVilleArrivee(String villeArrivee) {
+		this.villeArrivee = villeArrivee;
 	}
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -89,5 +100,4 @@ public class Annonce implements Serializable{
 		this.utilisateur = utilisateur;
 	}
 	
-
 }

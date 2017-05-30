@@ -1,8 +1,11 @@
 package tn.cynapsys.services;
 
 
+
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import tn.cynapsys.entities.Role;
 import tn.cynapsys.entities.Utilisateur;
 
@@ -18,7 +21,6 @@ public interface UtilisateurService {
 	//Long addUtilisateur(String username, String password);
 
 	//Boolean deleteUtilisateur(Long idUtilisateur);
-	
 	public Utilisateur registerUtilisateur(String nom, String prenom, String login, String motDePasse );
 	
 	public List<Utilisateur> listUtilisateur();
