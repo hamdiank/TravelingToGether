@@ -25,7 +25,7 @@ public class Message {
 
 	private String text ;
 
-	//private Date dateMessage;
+	private String sentAt;
 	
 
 	private Boolean isRead;
@@ -34,12 +34,13 @@ public class Message {
 		super();
 	}
 	
-public Message(Long idDestinataire, Utilisateur author, String text) {
+public Message(Long idDestinataire, Utilisateur author, String text,String sentAt) {
 		super();
 		this.idDestinataire = idDestinataire;
 		this.author = author;
 		this.text = text;
 		this.isRead = false;
+		this.sentAt=sentAt;
 	}
 
 /*
@@ -90,6 +91,14 @@ public Message(Long idDestinataire, Utilisateur author, String text) {
 
 	public void setIsRead(Boolean isRead) {
 		this.isRead = isRead;
+	}
+
+	public String getSentAt() {
+		return sentAt;
+	}
+
+	public void setSentAt(String sentAt) {
+		this.sentAt = sentAt;
 	}
 
 	

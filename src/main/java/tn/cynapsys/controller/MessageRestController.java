@@ -35,13 +35,8 @@ return messageRepository.findConversation(Long.valueOf("1"),Long.valueOf("2"));
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity<Message> addMessage(@RequestBody Message m) {
-
-		System.out.println("text "+m.getText());
-		System.out.println("auth "+m.getAuthor().getIdUtilisateur());
-		System.out.println("auth "+m.getAuthor().getNom());
-		System.out.println("id "+m.getIsRead());
-		System.out.println("dest "+m.getIdDestinataire());
-		Message newM= new Message(m.getIdDestinataire(),utilisateurservice.getUtilisateur(m.getAuthor().getIdUtilisateur()),m.getText());
+		
+		Message newM= new Message(m.getIdDestinataire(),utilisateurservice.getUtilisateur(m.getAuthor().getIdUtilisateur()),m.getText(),m.getSentAt());
 		newM.setIsRead(m.getIsRead());
 		return new ResponseEntity<Message>(messageService.saveMessage(newM), HttpStatus.CREATED);
 	}

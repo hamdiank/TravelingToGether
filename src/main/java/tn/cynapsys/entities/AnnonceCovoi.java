@@ -9,13 +9,14 @@ import javax.persistence.Entity;
 
 @Entity
 @Embeddable
-public class AnnonceCovoi extends Annonce{
+public class AnnonceCovoi extends Annonce {
 	private Long nombrePlaces;
-	private Long cotisation;
+	private float cotisation;
+
 	public AnnonceCovoi() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
 	public AnnonceCovoi(String datePublication, String heureDepart, String dateDepart, String paysDepart,
 			String villeDepart, String paysArrivee, String villeArrivee, Utilisateur utilisateur, Long nombrePlaces,
 			Long cotisation) {
@@ -28,15 +29,17 @@ public class AnnonceCovoi extends Annonce{
 	public Long getNombrePlaces() {
 		return nombrePlaces;
 	}
+
 	public void setNombrePlaces(Long nombrePlaces) {
 		this.nombrePlaces = nombrePlaces;
 	}
-	public Long getCotisation() {
+
+	public float getCotisation() {
 		return cotisation;
 	}
+
 	public void setCotisation(Long cotisation) {
 		this.cotisation = cotisation;
 	}
-
 
 }

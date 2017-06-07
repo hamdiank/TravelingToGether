@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.cynapsys.dao.AvisRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.Avis;
-import tn.cynapsys.entities.Pays;
 import tn.cynapsys.entities.Utilisateur;
 import tn.cynapsys.services.AvisService;
 
@@ -24,8 +22,6 @@ public class AvisRestController {
 
 	@Autowired
 	private AvisService avisService;
-	@Autowired
-	private AvisRepository avisRepository;
 	@Autowired
 	private UtilisateurRepository utilisateurService;
 
@@ -42,9 +38,8 @@ public class AvisRestController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Avis addAvist(@RequestBody Avis avis) {
-		System.out.println("eeeeeeeeeeeeeeeeeeeeeeeee");
 		Utilisateur u = utilisateurService.findUtilisateurByIdUtilisateur(avis.getId());
-		Avis a = new Avis(avis.getIdDest(), u, avis.getText());
+		Avis a = new Avis(avis.getIdDest(), u, avis.getText(), avis.getDate());
 		return avisService.saveAvis(a);
 
 	}
