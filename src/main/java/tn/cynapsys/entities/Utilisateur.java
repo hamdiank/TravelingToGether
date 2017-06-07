@@ -13,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -47,8 +49,12 @@ public class Utilisateur {
 	@JsonIgnore
 	private List<Avis> avis;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
+
+	
 	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "utilisateur")
+	@JsonIgnoreProperties(value = "utilisateur")
+
 	private Collection<Annonce> annonces;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -58,11 +64,27 @@ public class Utilisateur {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "VOITURE_ID")
 	private Voiture voiture;
+	
+	@JsonIgnore
+	@OneToMany( fetch = FetchType.LAZY, mappedBy="utilisateurReservation")
+	@JsonIgnoreProperties(value = "utilisateurReservation")
+	private List <Reservation> reservations;
+	
+	
 
 	public Utilisateur() {
 		super();
 
 	}
+
+
+///////////////////////////////////////////////////////////
+	
+	
+////////////////////////////////////////////////////////////
+	
+	
+	
 
 
 
@@ -88,6 +110,33 @@ public class Utilisateur {
 		this.messages = messages;
 		this.avis = avis;
 	}
+
+	public Utilisateur(Long idUtilisateur, String nom, String prenom, String email, String motDePasse, String dateNaissance,
+		String profession, String sexe, String numTelephone, String login, boolean etat, String description,
+		String avatarSrc, Role role, List<Message> messages, List<Avis> avis, Collection<Annonce> annonces,
+		Preferences preferences, Voiture voiture, List<Reservation> reservations) {
+	super();
+	this.idUtilisateur = idUtilisateur;
+	this.nom = nom;
+	this.prenom = prenom;
+	this.email = email;
+	this.motDePasse = motDePasse;
+	this.dateNaissance = dateNaissance;
+	Profession = profession;
+	this.sexe = sexe;
+	this.numTelephone = numTelephone;
+	this.login = login;
+	this.etat = etat;
+	this.description = description;
+	this.avatarSrc = avatarSrc;
+	this.role = role;
+	this.messages = messages;
+	this.avis = avis;
+	this.annonces = annonces;
+	this.preferences = preferences;
+	this.voiture = voiture;
+	this.reservations = reservations;
+}
 
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
@@ -239,6 +288,14 @@ public class Utilisateur {
 
 	public void setAvis(List<Avis> avis) {
 		this.avis = avis;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	

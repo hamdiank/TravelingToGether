@@ -28,18 +28,20 @@ public class AnnonceRestController {
 	@Autowired
 	private AnnonceService annonceService;
 	
+
+	@RequestMapping(value = "/annonces", method=RequestMethod.POST)
+	public Annonce save(@RequestBody Annonce a) {
+		return annonceService.saveAnnonce(a);
+	}
+	
+	/////////////////////Annonce Covoiturage ////////////////////////////////
+	
 	@RequestMapping(value = "/annonces", method = RequestMethod.GET)
 	public List<AnnonceCovoi> listAnnonceCovoi() {
 		
 		return annonceService.listAnnonceCovoi();
 		
 	}
-	@RequestMapping(value = "/annonces", method=RequestMethod.POST)
-	public Annonce save(@RequestBody Annonce a) {
-		return annonceService.saveAnnonce(a);
-	}
-	
-	//////////////////////////////////////////////////////
 	
 	@RequestMapping(value = "/annoncesByPage/{page}", method = RequestMethod.GET)
 	public Page<AnnonceCovoi> listAnnonceCovoiByPage(@PathVariable int page,@RequestParam(name="size",defaultValue="1") int size) {
@@ -83,7 +85,7 @@ public class AnnonceRestController {
 		return annonceService.getAnnonceCovoiById(id);
 	}
 
-
+///////////////////////////////////////////////////////////////////
 	
 		
 	

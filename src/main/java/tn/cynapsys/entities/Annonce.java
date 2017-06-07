@@ -31,7 +31,7 @@ public class Annonce implements Serializable{
 	private String paysArrivee;
 	private String villeArrivee;
 	@ManyToOne
-	@JsonIgnoreProperties(value = "annonce")
+	@JsonIgnoreProperties(value = "annonces")
 	@JoinColumn(name="CODE_UTIL")
 	private Utilisateur utilisateur;
 	

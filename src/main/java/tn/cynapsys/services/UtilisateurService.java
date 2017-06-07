@@ -15,12 +15,18 @@ public interface UtilisateurService {
 	Utilisateur getUtilisateurByMotDePasse(String motDePasse);
 
 	Utilisateur getUtilisateurbyId(Long idUtilisateur);
+	
 	Utilisateur getUtilisateurbyEmail(String email);
+	
 	//Boolean updateUtilisateur(String username,String password, Profile profile);
 
 	//Long addUtilisateur(String username, String password);
 
 	//Boolean deleteUtilisateur(Long idUtilisateur);
+
+	
+	public void confirmerInscription(String email);
+	
 	public Utilisateur registerUtilisateur(String nom, String prenom, String login, String motDePasse );
 	
 	public List<Utilisateur> listUtilisateur();

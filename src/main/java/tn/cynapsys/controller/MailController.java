@@ -39,7 +39,7 @@ public class MailController {
 			System.out.println(nMotDpass);
 			
 
-			String d_email = "votre mail", d_password = "votre mot de passe", d_host = "smtp.gmail.com",
+			String d_email = "becem.kan@gmail.com", d_password = "BK160592enetcom", d_host = "smtp.gmail.com",
 					d_port = "465",
 
 					m_to = mail,
@@ -61,12 +61,12 @@ public class MailController {
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			props.put("mail.smtp.socketFactory.fallback", "false");
 
-			// SecurityManager security = System.getSecurityManager();
+			//SecurityManager security = System.getSecurityManager();
 
 			try {
 				Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(d_email, d_password);
+						return new PasswordAuthentication("becem.kan@gmail.com", "BK160592enetcom");
 					}
 				});
 				session.setDebug(true);

@@ -2,6 +2,7 @@ package tn.cynapsys.services;
 
 
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,15 +11,22 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tn.cynapsys.dao.RoleRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.Role;
 import tn.cynapsys.entities.Utilisateur;
+import tn.cynapsys.entities.Voiture;
 
 @Service
 @Transactional
 public class UtilisateurServiceImpl implements UtilisateurService {
 	@Autowired
 	UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
+	
+	
 
 	@Override
 	public Utilisateur getUtilisateurByLogin(String login) {
@@ -57,6 +65,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		utilisateur.setPrenom(prenom);
 		utilisateur.setLogin(login);
 		utilisateur.setMotDePasse(motDePasse);
+		Long idRole= Long.parseLong("2");
+		Role role= roleRepository.findOne(idRole);
+		System.out.println(role);
+		utilisateur.setRole(role);
 
 		return utilisateurRepository.saveAndFlush(utilisateur);
 	}
@@ -74,7 +86,17 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public Utilisateur saveUtilisateur(Utilisateur u) {
-				return utilisateurRepository.save(u);
+		Long idRole= Long.parseLong("2");
+		Role role= roleRepository.findOne(idRole);
+		System.out.println(role);
+		u.setRole(role);
+		Voiture voiture= new Voiture();
+		voiture.setVoitureAvatar("imageVoiture.png");
+		u.setVoiture(voiture);
+		u.setAvatarSrc("téléchargement.png");
+		tn.cynapsys.entities.Preferences preferences= new tn.cynapsys.entities.Preferences();
+		u.setPreferences(preferences);
+		return utilisateurRepository.save(u);
 	}
 
 	@Override
@@ -107,6 +129,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return utilisateurRepository.findUtilisateurByEmail(email);
 	}
 
-	
+
+	@Override
+	public void confirmerInscription(String email) {
+		Utilisateur utilisateur= utilisateurRepository.findUtilisateurByEmail(email);
+		utilisateur.setEtat(true);
+	}
+
 
 }
