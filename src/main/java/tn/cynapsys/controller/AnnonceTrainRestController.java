@@ -38,9 +38,14 @@ public class AnnonceTrainRestController {
 		return annonceTrainService.getAnnonceTrainById(id);
 		
 	}
-	@RequestMapping(value = "/MesAnnoncesTrain", method = RequestMethod.GET)
+	@RequestMapping(value = "/MesAnnoncesTrain", method = RequestMethod.PUT)
 	public List<AnnonceTrain> listeMesAnnoncesTrain(@RequestParam Long id) {
 		return annonceTrainService.maListeAnnonceTrain(id);
+		
+	}
+	@RequestMapping(value = "/updateAnnonceTrain/{id}", method = RequestMethod.PUT)
+	public AnnonceTrain updateAnnonceVol(@RequestBody AnnonceTrain a, @PathVariable Long id) {
+		return annonceTrainService.updateAnnonceTrain(a, id);
 		
 	}
 }

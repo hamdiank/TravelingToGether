@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import tn.cynapsys.dao.AnnonceTrainRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.AnnonceTrain;
+import tn.cynapsys.entities.AnnonceVol;
 import tn.cynapsys.entities.Utilisateur;
 
 @Service
@@ -49,8 +50,10 @@ public class AnnonceTrainServiceImpl implements AnnonceTrainService {
 
 	@Override
 	public AnnonceTrain updateAnnonceTrain(AnnonceTrain a, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Utilisateur utilisateur= utilisateurRepository.findOne(id);
+		a.setUtilisateur(utilisateur);
+		return annonceTrainRepository.saveAndFlush(a);
 	}
 
 	@Override
