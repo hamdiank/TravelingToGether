@@ -7,46 +7,50 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Avis {
+public class Commentaire {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	private Long idDest;
+	@ManyToOne
+	@JoinColumn(name = "ID_Annonce")
+	private Annonce annonce;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_Autheur")
 	private Utilisateur author;
 	private String text;
 	private String date;
+
 	
-	public Avis() {
+	
+	
+	public Commentaire() {
 		super();
 	}
 
-	public Avis(Long idDest, Utilisateur author, String text,String date) {
+	public Commentaire(Annonce annonce, Utilisateur author, String text, String date) {
 		super();
-		this.idDest = idDest;
+		this.annonce = annonce;
 		this.author = author;
 		this.text = text;
-		this.date=date;
+		this.date = date;
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Long getIdDest() {
-		return idDest;
+	public Annonce getAnnonce() {
+		return annonce;
 	}
 
-	public void setIdDest(Long idDest) {
-		this.idDest = idDest;
+	public void setAnnonce(Annonce annonce) {
+		this.annonce = annonce;
 	}
 
 	public Utilisateur getAuthor() {
@@ -72,10 +76,5 @@ public class Avis {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
-	
-	
-	
-	
+
 }

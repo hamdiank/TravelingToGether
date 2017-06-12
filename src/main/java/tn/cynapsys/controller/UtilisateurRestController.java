@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 
+
 import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -13,6 +14,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,7 @@ public class UtilisateurRestController {
 	public List<Utilisateur> listUtilisateur() {
 		return utilisateurService.listUtilisateur();
 	}
-
+	
 	@RequestMapping(value = "/utilisateur/{id}", method = RequestMethod.GET)
 	public Utilisateur getUtilisateur(@PathVariable("id") Long id) {
 		return utilisateurService.getUtilisateur(id);
@@ -174,7 +176,6 @@ public class UtilisateurRestController {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ResponseEntity<String> setUserImage(@RequestParam("file") MultipartFile file, @RequestParam("id") String id,
 			HttpServletResponse response) throws Exception {
-		System.out.println("heere");
 		if (file.isEmpty()) {
 			response.setStatus(response.SC_BAD_REQUEST);
 			return null;
@@ -197,7 +198,6 @@ public class UtilisateurRestController {
 	@RequestMapping(value = "/uploadVoiture", method = RequestMethod.POST)
 	public ResponseEntity<String> setVoitureImage(@RequestParam("file") MultipartFile file,
 			@RequestParam("id") String id, HttpServletResponse response) throws Exception {
-		System.out.println("heere");
 		if (file.isEmpty()) {
 			response.setStatus(response.SC_BAD_REQUEST);
 			return null;
@@ -221,7 +221,7 @@ public class UtilisateurRestController {
 
 	@RequestMapping(value = "/getImageVoiture/{id}", method = RequestMethod.GET)
 	public ResponseEntity<org.springframework.core.io.Resource> getImageVoiture(@PathVariable Long id) {
-		System.out.println("enter21");
+		
 		String image = utilisateurService.getUtilisateur(id).getVoiture().getVoitureAvatar();
 		try {
 			// String path = Paths.get(ROOT, filename).toString();

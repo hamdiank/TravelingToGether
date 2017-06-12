@@ -1,9 +1,5 @@
 package tn.cynapsys.entities;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 @Entity

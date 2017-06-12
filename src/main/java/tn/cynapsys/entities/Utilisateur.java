@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @Entity
 public class Utilisateur {
 
@@ -48,9 +49,12 @@ public class Utilisateur {
 	@JsonIgnore
 	private List<Avis> avis;
 
+
+	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "utilisateur")
 	@JsonIgnoreProperties(value = "utilisateur")
+
 	private Collection<Annonce> annonces;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -73,6 +77,7 @@ public class Utilisateur {
 
 	}
 
+
 ///////////////////////////////////////////////////////////
 	
 	
@@ -83,11 +88,9 @@ public class Utilisateur {
 
 
 
-
-
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String dateNaissance,
 			String profession, String sexe, String numTelephone, String login, boolean etat, Role role,
-			String description, Voiture voiture,List<Message> messages, List<Avis> avis) {
+			String description,List<Message> messages, List<Avis> avis) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;

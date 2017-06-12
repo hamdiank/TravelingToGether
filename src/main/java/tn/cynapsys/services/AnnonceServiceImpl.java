@@ -8,6 +8,8 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import tn.cynapsys.dao.AnnonceCovoiRepository;
@@ -155,7 +157,11 @@ public class AnnonceServiceImpl implements AnnonceService{
 		return annonceCovoiRepository.findOne(id);
 	}
 
-
+	@Override
+	public Page<AnnonceCovoi> getAllAnnounceByPage(Pageable pageable) {
+	
+		return annonceCovoiRepository.findAll( pageable);
+	}
 	
 
 }

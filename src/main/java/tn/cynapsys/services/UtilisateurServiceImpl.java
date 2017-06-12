@@ -1,9 +1,13 @@
 package tn.cynapsys.services;
 
+
 import java.util.List;
 import java.util.prefs.Preferences;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -125,10 +129,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return utilisateurRepository.findUtilisateurByEmail(email);
 	}
 
+
 	@Override
 	public void confirmerInscription(String email) {
 		Utilisateur utilisateur= utilisateurRepository.findUtilisateurByEmail(email);
 		utilisateur.setEtat(true);
 	}
+
 
 }
