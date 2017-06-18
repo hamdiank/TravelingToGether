@@ -57,8 +57,13 @@ public class AnnonceRestController {
 		return annonceService.addAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id);
 
 	}
-	@RequestMapping(value = "/maListeAnnonceCovoi/{id}", method=RequestMethod.GET)
+	/*@RequestMapping(value = "/maListeAnnonceCovoi/{id}", method=RequestMethod.GET)
 	public  List <AnnonceCovoi> getMaListeAnnonceCovoi(@PathVariable Long id) {
+		return annonceService.maListAnnonceCovoi(id);
+	}*/
+	
+	@RequestMapping(value = "/maListeAnnonceCovoi", method=RequestMethod.GET)
+	public  List <AnnonceCovoi> getMaListeAnnonceCovoi(@RequestParam Long id) {
 		return annonceService.maListAnnonceCovoi(id);
 	}
 	

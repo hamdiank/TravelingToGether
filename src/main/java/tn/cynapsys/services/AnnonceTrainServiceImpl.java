@@ -58,7 +58,7 @@ public class AnnonceTrainServiceImpl implements AnnonceTrainService {
 
 	@Override
 	public void deleteAnnonceTrain(Long id) {
-		// TODO Auto-generated method stub
+		annonceTrainRepository.delete(id);
 		
 	}
 

@@ -48,4 +48,9 @@ public class AnnonceTrainRestController {
 		return annonceTrainService.updateAnnonceTrain(a, id);
 		
 	}
+	@RequestMapping(value = "/deleteAnnonceTrain/{id}", method = RequestMethod.DELETE)
+	public void deleteAnnonceTrain( @PathVariable Long id) {
+		annonceTrainService.deleteAnnonceTrain(id);
+		
+	}
 }

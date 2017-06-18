@@ -22,6 +22,7 @@ public class Reservation implements Serializable{
 	private Long idReservation;
 	
 	private  Boolean etat;
+	private Boolean confirmation;
 	
 	@ManyToOne
 	@JoinColumn(name="CODE_ANNONCE_COVOI")
@@ -76,6 +77,14 @@ public class Reservation implements Serializable{
 
 	public void setUtilisateurReservation(Utilisateur utilisateurReservation) {
 		this.utilisateurReservation = utilisateurReservation;
+	}
+
+	public Boolean getConfirmation() {
+		return confirmation;
+	}
+
+	public void setConfirmation(Boolean confirmation) {
+		this.confirmation = confirmation;
 	}
 
 

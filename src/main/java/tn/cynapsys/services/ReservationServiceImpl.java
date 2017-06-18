@@ -44,6 +44,7 @@ public class ReservationServiceImpl implements ReservationService{
 		System.out.println(annonceCovoi.getUtilisateur().getIdUtilisateur());
 		reservation.setAnnonceCovoi(annonceCovoi);
 		reservation.setEtat(etat);
+		reservation.setConfirmation(false);
 		reservation.setUtilisateurReservation(utilisateurReservation);
 		return reservationRepository.save(reservation);
 	}
@@ -87,40 +88,79 @@ public class ReservationServiceImpl implements ReservationService{
 			return null;
 		}
 
-		
-	
-
 	}
 
 	@Override
 	public void deleteReservation(Long idReservation) {
-		reservationRepository.delete(idReservation);
+		Reservation reservation= reservationRepository.findOne(idReservation);
+		if(reservation.getEtat()==true){
+			AnnonceCovoi annonceCovoi=reservation.getAnnonceCovoi();
+			Long nombrePlaces= annonceCovoi.getNombrePlaces();
+			nombrePlaces++;
+			annonceCovoi.setNombrePlaces(nombrePlaces);
+			System.out.println(nombrePlaces);
+			reservationRepository.delete(idReservation);
+		}else{
+			reservationRepository.delete(idReservation);
+		}
+
 		
 	}
 
 	@Override
-	public Reservation accepterReservation(Long idReservation, Boolean etat) {
+	public Reservation accepterReservation(Long idReservation) {
 		Reservation reservation= reservationRepository.findOne(idReservation);
 		AnnonceCovoi annonceCovoi=reservation.getAnnonceCovoi();
-		Long nombrePlaces= annonceCovoi.getNombrePlaces();
-		nombrePlaces--;
-		System.out.println(nombrePlaces);
-		annonceCovoi.setNombrePlaces(nombrePlaces);
-		reservation.setEtat(etat);
+		//Long nombrePlaces= annonceCovoi.getNombrePlaces();
+		//nombrePlaces--;
+		//System.out.println(nombrePlaces);
+		//annonceCovoi.setNombrePlaces(nombrePlaces);
+		reservation.setEtat(true);
 		return reservationRepository.saveAndFlush(reservation);
 	}
 
 	@Override
-	public Reservation refuserReservation(Long idReservation, Boolean etat) {
+	public Reservation refuserReservation(Long idReservation) {
 		Reservation reservation= reservationRepository.findOne(idReservation);
 		AnnonceCovoi annonceCovoi=reservation.getAnnonceCovoi();
-		Long nombrePlaces= annonceCovoi.getNombrePlaces();
-		nombrePlaces++;
-		System.out.println(nombrePlaces);
-		annonceCovoi.setNombrePlaces(nombrePlaces);
-		reservation.setEtat(etat);
+		//Long nombrePlaces= annonceCovoi.getNombrePlaces();
+		//nombrePlaces++;
+		//System.out.println(nombrePlaces);
+		//annonceCovoi.setNombrePlaces(nombrePlaces);
+		reservation.setEtat(null);
 		return reservationRepository.saveAndFlush(reservation);
 	}
-	
 
+	@Override
+	public Reservation getReservationById(Long idReservation) {
+		
+		return reservationRepository.getOne(idReservation);
+	}
+
+	@Override
+	public List<Reservation> getReservationByAnnonceCovoiEnAttente(Long idAnnonceCovoi) {
+		try{
+			Query req= em.createQuery("select r from Reservation r where r.etat= :x and r.annonceCovoi.id= :y");
+			req.setParameter("x", false);
+			req.setParameter("y", idAnnonceCovoi);
+			return req.getResultList();
+			
+		}catch (NoResultException e) {
+			
+			return null;
+	}
+	
+	}
+
+	@Override
+	public Reservation confirmerReservation(Long idReservation) {
+		Reservation reservation= reservationRepository.findOne(idReservation);
+		reservation.setConfirmation(true);
+		AnnonceCovoi annonceCovoi= reservation.getAnnonceCovoi();
+		Long nombrePlaces= annonceCovoi.getNombrePlaces();
+		nombrePlaces--;
+		System.out.println(nombrePlaces);
+		annonceCovoi.setNombrePlaces(nombrePlaces);
+		return reservationRepository.saveAndFlush(reservation);
+	}
 }
