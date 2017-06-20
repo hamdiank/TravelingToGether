@@ -103,7 +103,7 @@ public class ReservationRestController {
 			Utilisateur utilisateur2=reservation.getAnnonceCovoi().getUtilisateur();
 			System.out.println(utilisateur2.getEmail());
 			
-			String mail= utilisateur1.getEmail();
+			String mail= utilisateur2.getEmail();
 			String d_email ="becem.kan@gmail.com", d_password = "BK160592enetcom", d_host = "smtp.gmail.com",
 					d_port = "465",
 

@@ -30,6 +30,7 @@ public class Annonce implements Serializable{
 	private String villeDepart;
 	private String paysArrivee;
 	private String villeArrivee;
+	private String description;
 	@ManyToOne
 	@JsonIgnoreProperties(value = "annonces")
 	@JoinColumn(name="CODE_UTIL")
@@ -108,5 +109,12 @@ public class Annonce implements Serializable{
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 }

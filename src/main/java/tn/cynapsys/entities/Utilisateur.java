@@ -114,7 +114,7 @@ public class Utilisateur {
 	public Utilisateur(Long idUtilisateur, String nom, String prenom, String email, String motDePasse, String dateNaissance,
 		String profession, String sexe, String numTelephone, String login, boolean etat, String description,
 		String avatarSrc, Role role, List<Message> messages, List<Avis> avis, Collection<Annonce> annonces,
-		Preferences preferences, Voiture voiture, List<Reservation> reservations) {
+		Preferences preferences, List<Reservation> reservations) {
 	super();
 	this.idUtilisateur = idUtilisateur;
 	this.nom = nom;
@@ -134,7 +134,7 @@ public class Utilisateur {
 	this.avis = avis;
 	this.annonces = annonces;
 	this.preferences = preferences;
-	this.voiture = voiture;
+	this.voiture = new Voiture();
 	this.reservations = reservations;
 }
 

@@ -2,6 +2,7 @@ package tn.cynapsys.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,11 +16,13 @@ public class AnnonceCovoi extends Annonce {
 	private Long nombrePlaces;
 
 	private float cotisation;
+	
+	private String cotType;
 
 
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "annonceCovoi")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "annonceCovoi")
 	//@JsonIgnoreProperties(value = "annonceCovoi")
 	private List <Reservation> reservations;
 	
@@ -71,6 +74,18 @@ public class AnnonceCovoi extends Annonce {
 	}
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+
+
+	public String getCotType() {
+		return cotType;
+	}
+
+
+
+	public void setCotType(String cotType) {
+		this.cotType = cotType;
 	}
 
 }

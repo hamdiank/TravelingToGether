@@ -14,9 +14,13 @@ import org.springframework.stereotype.Service;
 
 import tn.cynapsys.dao.AnnonceCovoiRepository;
 import tn.cynapsys.dao.AnnonceRepository;
+import tn.cynapsys.dao.AnnonceTrainRepository;
+import tn.cynapsys.dao.AnnonceVolRepository;
 import tn.cynapsys.dao.UtilisateurRepository;
 import tn.cynapsys.entities.Annonce;
 import tn.cynapsys.entities.AnnonceCovoi;
+import tn.cynapsys.entities.AnnonceTrain;
+import tn.cynapsys.entities.AnnonceVol;
 import tn.cynapsys.entities.Utilisateur;
 
 @Service
@@ -30,6 +34,12 @@ public class AnnonceServiceImpl implements AnnonceService{
 	
 	@Autowired
 	public AnnonceCovoiRepository annonceCovoiRepository;
+	
+	@Autowired
+	public AnnonceVolRepository annonceVolRepository;
+	
+	@Autowired
+	public AnnonceTrainRepository annonceTrainRepository;
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -94,16 +104,19 @@ public class AnnonceServiceImpl implements AnnonceService{
 	@Override
 	public Annonce addAnnonceCovoi( String heureDepart, String dateDepart, String paysDepart,
 			String villeDepart, String paysArrivee, String villeArrivee, Long nombrePlaces,
-			Long cotisation, Long id) {
+			Long cotisation, String cotType, Long id, String description) {
 		AnnonceCovoi annonceCovoi= new AnnonceCovoi();
 		annonceCovoi.setHeureDepart(heureDepart);
 		annonceCovoi.setCotisation(cotisation);
+		annonceCovoi.setCotType(cotType);
 		annonceCovoi.setDateDepart(dateDepart);
 		annonceCovoi.setNombrePlaces(nombrePlaces);
 		annonceCovoi.setPaysArrivee(paysArrivee);
 		annonceCovoi.setVilleArrivee(villeArrivee);
 		annonceCovoi.setPaysDepart(paysDepart);
 		annonceCovoi.setVilleDepart(villeDepart);
+		annonceCovoi.setDescription(description);
+		
 
 		Utilisateur utilisateur= utilisateurRepository.findOne(id);
 		
@@ -130,7 +143,7 @@ public class AnnonceServiceImpl implements AnnonceService{
 	@Override
 	public AnnonceCovoi updateAnnonceCovoi(String heureDepart, String dateDepart, String paysDepart,
 			String villeDepart, String paysArrivee, String villeArrivee, Long nombrePlaces,
-			Long cotisation, Long id, Long idUtilisateur) {
+			Long cotisation, String cotType, String description, Long id, Long idUtilisateur) {
 		AnnonceCovoi annonceCovoi= annonceCovoiRepository.findOne(id);
 		annonceCovoi.setHeureDepart(heureDepart);
 		annonceCovoi.setDateDepart(dateDepart);
@@ -140,6 +153,8 @@ public class AnnonceServiceImpl implements AnnonceService{
 		annonceCovoi.setVilleArrivee(villeArrivee);
 		annonceCovoi.setNombrePlaces(nombrePlaces);
 		annonceCovoi.setCotisation(cotisation);
+		annonceCovoi.setCotType(cotType);
+		annonceCovoi.setDescription(description);
 		annonceCovoi.setId(id);
 		Utilisateur utilisateur= utilisateurRepository.findOne(idUtilisateur);
 		annonceCovoi.setUtilisateur(utilisateur);
@@ -161,6 +176,18 @@ public class AnnonceServiceImpl implements AnnonceService{
 	public Page<AnnonceCovoi> getAllAnnounceByPage(Pageable pageable) {
 	
 		return annonceCovoiRepository.findAll( pageable);
+	}
+
+	@Override
+	public AnnonceVol getAnnonceVolById(Long id) {
+	
+	return annonceVolRepository.findOne(id);
+	}
+
+	@Override
+	public AnnonceTrain getAnnonceTrainById(Long id) {
+		
+		return annonceTrainRepository.findOne(id);
 	}
 	
 

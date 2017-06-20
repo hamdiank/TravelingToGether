@@ -51,6 +51,45 @@ public class CommentaireRestController {
 		System.out.println(co.getText());
 		return new ResponseEntity<Commentaire>(co, HttpStatus.OK);
 	}
+	
+	/////////////////////Add commentaire and Get AnnonceVol///////////////////////
+	
+	@RequestMapping(value = "/addCommAnnonceVol/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Commentaire> addCommAnnonceVol(@RequestBody Commentaire c, @PathVariable Long id) {
+
+		Utilisateur u = utilisateurService.findUtilisateurByIdUtilisateur(c.getId());
+		Annonce a = annonceService.getAnnonceVolById(id);
+		Commentaire co = commentaireService.saveCommentaire(new Commentaire(a, u, c.getText(), c.getDate()));
+		System.out.println(co.getText());
+		return new ResponseEntity<Commentaire>(co, HttpStatus.OK);
+	}
+	@RequestMapping(value = "/commentaireAnnonceVol/{id}", method = RequestMethod.GET)
+	public List<Commentaire> CommentaireByAnnonceVol(@PathVariable Long id) {
+		System.out.println("id    "+id);
+		Annonce a = annonceService.getAnnonceVolById(id);
+		System.out.println(a.getId());
+		return commentaireService.getCommentaireByAnnonce(a);
+	}
+	
+	///////////////////////Add Commentaire AnnonceTrain and Get commentaires/////////////////////////////////////////////////
+	@RequestMapping(value = "/addCommAnnonceTrain/{id}", method = RequestMethod.POST)
+	public ResponseEntity<Commentaire> addCommAnnonceTrain(@RequestBody Commentaire c, @PathVariable Long id) {
+
+		Utilisateur u = utilisateurService.findUtilisateurByIdUtilisateur(c.getId());
+		Annonce a = annonceService.getAnnonceTrainById(id);
+		Commentaire co = commentaireService.saveCommentaire(new Commentaire(a, u, c.getText(), c.getDate()));
+		System.out.println(co.getText());
+		return new ResponseEntity<Commentaire>(co, HttpStatus.OK);
+	}
+	@RequestMapping(value = "/commentaireAnnonceTrain/{id}", method = RequestMethod.GET)
+	public List<Commentaire> CommentaireByAnnonceTrain(@PathVariable Long id) {
+		System.out.println("id    "+id);
+		Annonce a = annonceService.getAnnonceTrainById(id);
+		System.out.println(a.getId());
+		return commentaireService.getCommentaireByAnnonce(a);
+	}
+	
+	////////////////////////////////////////////////////////////////////////
 
 	@RequestMapping(value = "/dell/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Commentaire> deleteCommentaire(@PathVariable Long id) {
@@ -63,6 +102,7 @@ public class CommentaireRestController {
 		} else {
 
 			commentaireService.deleteCommentaire(a);
+			System.out.print("commentaire supprimé");
 
 			return new ResponseEntity<Commentaire>(a, HttpStatus.OK);
 		}

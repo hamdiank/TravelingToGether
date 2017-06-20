@@ -52,9 +52,9 @@ public class AnnonceRestController {
 	@RequestMapping(value = "/ajoutAnnonceCovoi", method=RequestMethod.PUT)
 	public Annonce ajout(@RequestParam String heureDepart,@RequestParam String dateDepart, @RequestParam String paysDepart,
 			@RequestParam String villeDepart, @RequestParam String paysArrivee,@RequestParam String villeArrivee,@RequestParam Long nombrePlaces,
-			@RequestParam Long cotisation, @RequestParam Long id ) {
+			@RequestParam Long cotisation, @RequestParam String cotType, @RequestParam Long id, @RequestParam String description ) {
 		
-		return annonceService.addAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id);
+		return annonceService.addAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation,cotType, id, description);
 
 	}
 	/*@RequestMapping(value = "/maListeAnnonceCovoi/{id}", method=RequestMethod.GET)
@@ -70,8 +70,8 @@ public class AnnonceRestController {
 	@RequestMapping(value = "/updateAnnonceCovoi", method=RequestMethod.PUT)
 	public AnnonceCovoi update(@RequestParam String heureDepart,@RequestParam String dateDepart, @RequestParam String paysDepart,
 			@RequestParam String villeDepart, @RequestParam String paysArrivee,@RequestParam String villeArrivee,@RequestParam Long nombrePlaces,
-			@RequestParam Long cotisation,@RequestParam Long id, @RequestParam Long idUtilisateur) {
-		return annonceService.updateAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation, id, idUtilisateur);
+			@RequestParam Long cotisation,@RequestParam String cotType, @RequestParam String description, @RequestParam Long id, @RequestParam Long idUtilisateur) {
+		return annonceService.updateAnnonceCovoi(heureDepart, dateDepart, paysDepart, villeDepart, paysArrivee, villeArrivee, nombrePlaces, cotisation,cotType, description, id, idUtilisateur);
 	}
 	
 	@RequestMapping(value = "/deleteAnnonceCovoi/{id}", method=RequestMethod.DELETE)
